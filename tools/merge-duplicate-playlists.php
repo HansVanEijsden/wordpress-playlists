@@ -45,6 +45,14 @@ if ( ! defined( 'FS_CHMOD_DIR' ) ) {
 if ( ! defined( 'FS_CHMOD_FILE' ) ) {
 	define( 'FS_CHMOD_FILE', 0644 );
 }
+// Force the direct filesystem method. Without this, an unset FS_METHOD can
+// fall back to ftpsockets, whose put_contents() needs wp_tempnam() /
+// wp_generate_password() - admin functions that are not loaded during a CLI
+// bootstrap. The direct method writes with file_put_contents() instead, so
+// plugins that write files during load (e.g. the Bluesky logger) won't fatal.
+if ( ! defined( 'FS_METHOD' ) ) {
+	define( 'FS_METHOD', 'direct' );
+}
 
 $root = __DIR__;
 for ( $i = 0; $i < 8; $i++ ) {
