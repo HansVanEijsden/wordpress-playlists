@@ -6,6 +6,7 @@
  * Version:           1.0.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
+ * Requires Plugins:  radio-station
  * Author:            Hans van Eijsden
  * Author URI:        https://www.hansvaneijsden.com
  * License:           GPL-2.0-or-later
