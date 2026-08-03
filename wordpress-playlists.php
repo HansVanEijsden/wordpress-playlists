@@ -3,7 +3,7 @@
  * Plugin Name:       WordPress Playlists
  * Plugin URI:        https://github.com/HansVanEijsden/wordpress-playlists
  * Description:       Automatic daily radio playlists for the Radio Station plugin. A metadata hub posts each played track to the plugin's REST endpoint, which appends it to the correct daily playlist for the current show. One station per site, fully configurable in the WordPress admin.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Requires Plugins:  radio-station
@@ -19,7 +19,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WORDPRESS_PLAYLISTS_VERSION', '1.0.1' );
+define( 'WORDPRESS_PLAYLISTS_VERSION', '1.0.2' );
 define( 'WORDPRESS_PLAYLISTS_FILE', __FILE__ );
 define( 'WORDPRESS_PLAYLISTS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WORDPRESS_PLAYLISTS_URL', plugin_dir_url( __FILE__ ) );

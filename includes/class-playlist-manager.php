@@ -105,6 +105,10 @@ final class Playlist_Manager {
 	 * contract), not by the playlist_show_id meta, because a metadata hub's
 	 * show ID may not match the value Radio Station stored.
 	 *
+	 * When the API returns a show name but no today's playlist title contains
+	 * it, this returns false so a brand-new show gets its own playlist - tracks
+	 * are never appended to a different show's playlist.
+	 *
 	 * @param string $show_name Show name from the metadata API.
 	 * @return int|false
 	 */
@@ -133,18 +137,22 @@ final class Playlist_Manager {
 		}
 
 		// Prefer the newest playlist whose title also contains this show's
-		// name; fall back to the newest playlist matching today's date.
-		$fallback = 0;
+		// name (rows are ordered newest-first).
 		foreach ( $rows as $row ) {
-			if ( 0 === $fallback ) {
-				$fallback = (int) $row->ID;
-			}
 			if ( '' !== $show_name && false !== stripos( (string) $row->post_title, $show_name ) ) {
 				return (int) $row->ID;
 			}
 		}
 
-		return $fallback;
+		// Without any show name from the API, fall back to the newest of
+		// today's playlists. But when a name was given and nothing matched,
+		// this is a brand-new show - return false so add_track() creates a
+		// fresh playlist instead of appending to another show's playlist.
+		if ( '' === $show_name ) {
+			return (int) $rows[0]->ID;
+		}
+
+		return false;
 	}
 
 	/**

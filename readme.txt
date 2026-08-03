@@ -4,7 +4,7 @@ Tags: radio, playlist, radio-station, rest-api, broadcast
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,9 @@ No. Featured images are set with existing attachment IDs only (the show avatar i
 No. By default uninstalling only removes the plugin's own settings option. Playlists are only deleted if you explicitly enable "Delete all playlist posts when the plugin is uninstalled" on the settings page - and even then only playlist posts are targeted, nothing else.
 
 == Changelog ==
+
+= 1.0.2 =
+* Fixed today's-playlist lookup for brand-new shows: when a show name is provided but no today's playlist title contains it, a new playlist is now created. Previously the track was silently appended to the newest same-day playlist (the previous show's), so a new show (e.g. "Avond aan de IJssel" on Salland1) got no playlist of its own.
 
 = 1.0.1 =
 * Fixed today's-playlist lookup: it now queries the post title directly instead of a fuzzy WP_Query search, so search-rewriting plugins (e.g. a fulltext-search mu-plugin) can no longer cause one playlist per track.
