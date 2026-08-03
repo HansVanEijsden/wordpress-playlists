@@ -30,6 +30,22 @@ if ( PHP_SAPI !== 'cli' && ! defined( 'WP_CLI' ) ) {
 }
 
 // Bootstrap WordPress by finding wp-load.php above this plugin.
+//
+// Some hardened hosts strip the FS_CHMOD_* constants from
+// wp-includes/default-constants.php (a minor info-leak vector). Plugins that
+// reference them - e.g. simple-auto-poster-for-bluesky - then fatal during
+// bootstrap, so predefine the standard safe values for CLI runs. WordPress's
+// own definitions are guarded with defined(), so this cannot conflict.
+if ( ! defined( 'WP_USE_THEMES' ) ) {
+	define( 'WP_USE_THEMES', false ); // CLI: never load theme templates.
+}
+if ( ! defined( 'FS_CHMOD_DIR' ) ) {
+	define( 'FS_CHMOD_DIR', 0755 );
+}
+if ( ! defined( 'FS_CHMOD_FILE' ) ) {
+	define( 'FS_CHMOD_FILE', 0644 );
+}
+
 $root = __DIR__;
 for ( $i = 0; $i < 8; $i++ ) {
 	$root = dirname( $root );
