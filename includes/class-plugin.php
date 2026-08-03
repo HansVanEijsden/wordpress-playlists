@@ -56,15 +56,8 @@ final class Plugin {
 			echo '<div class="notice notice-warning"><p>' . esc_html__( 'WordPress Playlists depends on the Radio Station plugin; install and activate it to create playlists.', 'wordpress-playlists' ) . '</p></div>';
 		}
 
-		$missing = Settings::stations_missing_keys();
-		if ( ! empty( $missing ) ) {
-			echo '<div class="notice notice-warning"><p>' . esc_html(
-				sprintf(
-					/* translators: %s: comma separated station names */
-					__( 'WordPress Playlists: enter an API key for %s on the settings page before tracks can be accepted.', 'wordpress-playlists' ),
-					implode( ', ', $missing )
-				)
-			) . '</p></div>';
+		if ( Settings::missing_api_key() ) {
+			echo '<div class="notice notice-warning"><p>' . esc_html__( 'WordPress Playlists: enter an API key on the settings page before tracks can be accepted.', 'wordpress-playlists' ) . '</p></div>';
 		}
 	}
 }

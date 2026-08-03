@@ -2,9 +2,9 @@
 /**
  * Station
  *
- * Immutable value object for one station's configuration, built from the
- * settings option array. Keeps the admin-configured values typed and
- * sanitized so the rest of the plugin can trust them.
+ * Immutable value object for this site's station configuration, built from the
+ * settings option. Keeps the admin-configured values typed and sanitized so
+ * the rest of the plugin can trust them. Each site has exactly one station.
  *
  * @package WordPressPlaylists
  */
@@ -15,9 +15,8 @@ defined( 'ABSPATH' ) || exit;
 
 final class Station {
 
-	private string $id;
-	private string $name;
 	private bool $enabled;
+	private string $name;
 	private string $rest_namespace;
 	private string $api_endpoint;
 	private string $api_key;
@@ -25,12 +24,11 @@ final class Station {
 	private int $post_author;
 
 	/**
-	 * @param array $data Raw station settings from the options table.
+	 * @param array $data Raw settings from the options table.
 	 */
 	public function __construct( array $data ) {
-		$this->id                = sanitize_key( (string) ( $data['id'] ?? '' ) );
-		$this->name              = sanitize_text_field( (string) ( $data['name'] ?? '' ) );
 		$this->enabled           = ! empty( $data['enabled'] );
+		$this->name              = sanitize_text_field( (string) ( $data['station_name'] ?? '' ) );
 		$this->rest_namespace    = sanitize_text_field( (string) ( $data['rest_namespace'] ?? '' ) );
 		$this->api_endpoint      = esc_url_raw( (string) ( $data['api_endpoint'] ?? '' ) );
 		$this->api_key           = (string) ( $data['api_key'] ?? '' );
@@ -38,16 +36,12 @@ final class Station {
 		$this->post_author       = absint( $data['post_author'] ?? 0 );
 	}
 
-	public function id(): string {
-		return $this->id;
+	public function enabled(): bool {
+		return $this->enabled;
 	}
 
 	public function name(): string {
 		return $this->name;
-	}
-
-	public function enabled(): bool {
-		return $this->enabled;
 	}
 
 	public function rest_namespace(): string {
@@ -71,8 +65,8 @@ final class Station {
 	}
 
 	/**
-	 * Whether this station is fully configured. A REST endpoint is only
-	 * registered for stations that pass this check.
+	 * Whether the station is fully configured. The REST endpoint is only
+	 * registered when this returns true.
 	 */
 	public function is_ready(): bool {
 		return $this->enabled

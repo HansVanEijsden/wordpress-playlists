@@ -2,10 +2,10 @@
 /**
  * Gettext Filters
  *
- * Radio Station labels the playlist entry comment column "Comments", but the
- * value holds the track start time. The label shown on the site is
- * admin-configurable (default "Start Time"); the rename is skipped when the
- * configured label is empty.
+ * Radio Station's playlist entries have a "Comments" field, which this plugin
+ * uses to store each track's start time (HH:MM). The column header shown on
+ * the site is admin-configurable (default "Start Time"); the rename is
+ * skipped when the configured label is empty.
  *
  * @package WordPressPlaylists
  */

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       WordPress Playlists
  * Plugin URI:        https://github.com/HansVanEijsden/wordpress-playlists
- * Description:       Automatic daily radio playlists for the Radio Station plugin. Each station receives track data over its own REST API endpoint and appends the track to the correct daily playlist for the current show. Multi-station and fully configurable in the WordPress admin.
+ * Description:       Automatic daily radio playlists for the Radio Station plugin. A metadata hub posts each played track to the plugin's REST endpoint, which appends it to the correct daily playlist for the current show. One station per site, fully configurable in the WordPress admin.
  * Version:           1.0.0
  * Requires at least: 5.8
  * Requires PHP:      7.4

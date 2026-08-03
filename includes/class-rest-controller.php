@@ -2,9 +2,9 @@
 /**
  * REST Controller
  *
- * Registers a per-station "playlist/track" endpoint and authenticates every
- * request against that station's admin-configured API key. The API key lives
- * only in the options table - never in source code.
+ * Registers the site's "playlist/track" endpoint and authenticates every
+ * request against the admin-configured API key. The API key lives only in the
+ * options table - never in source code.
  *
  * @package WordPressPlaylists
  */
@@ -20,31 +20,35 @@ final class Rest_Controller {
 	}
 
 	/**
-	 * Register a track endpoint for every fully configured station.
+	 * Register the track endpoint for this site's station.
 	 * Route shape: /wp-json/<namespace>/playlist/track (POST).
 	 */
 	public function register_routes(): void {
-		foreach ( Settings::enabled_stations() as $station ) {
-			$namespace = $station->rest_namespace();
-			if ( '' === $namespace ) {
-				continue;
-			}
+		$station = Settings::station();
 
-			register_rest_route(
-				$namespace,
-				'/playlist/track',
-				array(
-					'methods'             => \WP_REST_Server::CREATABLE,
-					'callback'            => function ( \WP_REST_Request $request ) use ( $station ) {
-						return $this->handle_track_request( $request, $station );
-					},
-					'permission_callback' => function ( \WP_REST_Request $request ) use ( $station ) {
-						return $this->check_permission( $request, $station );
-					},
-					'args'                => $this->route_args(),
-				)
-			);
+		if ( ! $station->is_ready() ) {
+			return;
 		}
+
+		$namespace = $station->rest_namespace();
+		if ( '' === $namespace ) {
+			return;
+		}
+
+		register_rest_route(
+			$namespace,
+			'/playlist/track',
+			array(
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'callback'            => function ( \WP_REST_Request $request ) use ( $station ) {
+					return $this->handle_track_request( $request, $station );
+				},
+				'permission_callback' => function ( \WP_REST_Request $request ) use ( $station ) {
+					return $this->check_permission( $request, $station );
+				},
+				'args'                => $this->route_args(),
+			)
+		);
 	}
 
 	/**

@@ -8,35 +8,35 @@ Stable tag: 1.0.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Automatic daily radio playlists for the Radio Station plugin. Each station receives track data over its own REST API endpoint and appends the track to the correct daily playlist for the current show.
+Automatic daily radio playlists for the Radio Station plugin. A metadata hub posts each played track to the plugin's REST endpoint, which appends it to the correct daily playlist for the current show.
 
 == Description ==
 
 WordPress Playlists automatically builds daily radio playlists for the [Radio Station](https://wordpress.org/plugins/radio-station/) plugin.
 
-A metadata hub POSTs every played track to a station's REST endpoint. The plugin:
+A metadata hub POSTs every played track to the plugin's REST endpoint. The plugin:
 
-* Authenticates the request against a per-station API key configured in the WordPress admin (no secrets in source code).
+* Authenticates the request against an API key configured in the WordPress admin (no secrets in source code).
 * Validates the track (artist + title required; optional duration, only tracks shorter than 2 minutes are rejected).
-* Fetches the currently broadcasting show from the station's metadata API.
+* Fetches the currently broadcasting show from the metadata API.
 * Finds or creates today's playlist post for that show.
 * Appends the track to the playlist with the exact meta structure Radio Station expects.
 
-= Multiple stations =
+= One station per site =
 
-Each station is configured independently under **Settings → WordPress Playlists**:
+Each WordPress site (or subsite) has one radio station, configured under **Settings → WordPress Playlists**:
 
-* **Enable station** – registers its REST endpoint.
+* **Enable station** – registers the REST endpoint.
 * **Station name** – used in logs and as the playlist author context.
-* **REST namespace** – the URL segment of the track endpoint (`/wp-json/<namespace>/playlist/track`).
+* **REST namespace** – the path segment of the track endpoint between `/wp-json/` and `/playlist/track`; set it to the namespace your metadata hub posts to.
 * **Metadata API endpoint** – returns the current show (`broadcast.current_show.show.{id,name,slug,avatar_id}`).
-* **API key** – accepted via `X-API-Key` header, `Authorization: Bearer` or `?secret=` query parameter. Stored in the options table, never displayed.
+* **API key** – accepted via `X-API-Key` header, `Authorization: Bearer` or `?secret=` query parameter (the metadata hub uses a bearer token). Stored in the options table, never displayed.
 * **Fallback image ID** – attachment used for the playlist featured image when the show has no avatar.
 * **Post author ID** – user assigned to created playlist posts.
 
 = General settings =
 
-* **Playlist comment column label** – Radio Station calls the track start-time column "Comments"; you can rename it (default "Start Time"). Leave empty to keep Radio Station's wording.
+* **Playlist comment column label** – Radio Station's playlist entries have a "Comments" field, which this plugin uses to store each track's start time. Rename that column's header here (default "Start Time"); leave empty to keep Radio Station's wording.
 * **Uninstall behavior** – by default, uninstalling only removes this plugin's own settings. Deleting playlists on uninstall is disabled by default and must be enabled explicitly.
 
 = Dependencies =
@@ -52,14 +52,16 @@ The recommended way to install is via `git clone` or `git pull` into the WordPre
    `git clone https://github.com/HansVanEijsden/wordpress-playlists.git`
    (or `git pull` inside that folder to update an existing install).
 2. Activate **WordPress Playlists** in the WordPress admin.
-3. Go to **Settings → WordPress Playlists**, add your stations, and enter an API key for each, then save.
-4. Point each station's metadata hub at `/wp-json/<namespace>/playlist/track` (shown on the settings page).
+3. Go to **Settings → WordPress Playlists** and configure the station, then save.
+4. Point the metadata hub at `/wp-json/<namespace>/playlist/track` (shown on the settings page).
+
+On WordPress multisite, activate and configure the plugin on each subsite; settings are stored per site, so every subsite can have its own station.
 
 == Frequently Asked Questions ==
 
-= Where are the API keys stored? =
+= Where is the API key stored? =
 
-In the `wordpress_playlists_settings` option in the database. Keys are entered on the settings page, are never echoed back, and an empty key field on save keeps the existing key. Keys never appear in source code, the repo, or the plugin logs.
+In the `wordpress_playlists_settings` option in the database. It is entered on the settings page, never echoed back, and an empty key field on save keeps the existing key. The key never appears in source code, the repo, or the plugin logs.
 
 = Which auth methods does the endpoint accept? =
 
@@ -81,7 +83,7 @@ No. By default uninstalling only removes the plugin's own settings option. Playl
 
 = 1.0.0 =
 * Initial public release.
-* Multi-station playlist management for the Radio Station plugin.
+* Single-station playlist management for the Radio Station plugin.
 * All station configuration (metadata endpoint, REST namespace, API key, fallback image, post author) is admin-configurable; no secrets in source.
 * Configurable playlist comment column label (default "Start Time").
 * Safe uninstall: playlists are never deleted unless explicitly enabled.
