@@ -20,6 +20,7 @@ Everything is in **English**: code, comments, docs, this file. The only site-fac
 | `includes/class-gettext.php` | Renames Radio Station `Comments`/`Comment` → configured label (default `Start Time`). |
 | `assets/js/settings.js` | Settings page: fallback-image media picker + copy button for the hub config block. |
 | `tools/merge-duplicate-playlists.php` | CLI-only maintenance tool that merges duplicate daily playlists back into one per show (dry-run by default). |
+| `tools/move-tracks-between-playlists.php` | CLI-only maintenance tool that moves tracks with a start time >= `HH:MM` from one of today's playlists into another (e.g. recovering tracks misrouted to the previous show's playlist; dry-run by default). |
 | `uninstall.php`, `readme.txt`, `README.md`, `LICENSE`, `.editorconfig`, `.github/workflows/ci.yml` | Housekeeping / distribution / CI. |
 
 All classes live in the `WordPressPlaylists\` namespace.
