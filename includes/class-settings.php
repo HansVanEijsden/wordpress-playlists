@@ -16,33 +16,15 @@ defined( 'ABSPATH' ) || exit;
 final class Settings {
 
 	/**
-	 * Default stations. API keys are intentionally empty; they must be
-	 * configured per site in the admin.
+	 * Plugin defaults. No stations are pre-configured; the site administrator
+	 * adds them on the settings page so the plugin ships without any
+	 * site-specific data.
 	 */
 	public static function defaults(): array {
 		return array(
-			'stations' => array(
-				'1zwolle'  => array(
-					'id'                => '1zwolle',
-					'name'              => '1Zwolle',
-					'enabled'           => true,
-					'rest_namespace'    => '1zwolle/v1',
-					'api_endpoint'      => 'https://1zwolle.nl/wp-json/metadata/v1/current',
-					'api_key'           => '',
-					'fallback_image_id' => 195562,
-					'post_author'       => 1,
-				),
-				'salland1' => array(
-					'id'                => 'salland1',
-					'name'              => 'Salland1',
-					'enabled'           => true,
-					'rest_namespace'    => 'salland1/v1',
-					'api_endpoint'      => 'https://www.salland1.nl/wp-json/metadata/v1/current',
-					'api_key'           => '',
-					'fallback_image_id' => 196806,
-					'post_author'       => 70,
-				),
-			),
+			'stations'                      => array(),
+			'comments_label'                => 'Start Time',
+			'delete_playlists_on_uninstall' => false,
 		);
 	}
 
@@ -54,20 +36,25 @@ final class Settings {
 		$saved    = get_option( WORDPRESS_PLAYLISTS_OPTION, array() );
 		$defaults = self::defaults();
 
-		if ( empty( $saved['stations'] ) || ! is_array( $saved['stations'] ) ) {
-			return $defaults;
+		if ( ! is_array( $saved ) ) {
+			$saved = array();
 		}
 
-		foreach ( $saved['stations'] as $id => $data ) {
-			if ( isset( $defaults['stations'][ $id ] ) ) {
-				$saved['stations'][ $id ] = array_merge(
-					$defaults['stations'][ $id ],
-					is_array( $data ) ? $data : array()
-				);
+		// Top-level merge so new keys appear on existing installs.
+		$merged = array_merge( $defaults, $saved );
+
+		if ( ! isset( $merged['stations'] ) || ! is_array( $merged['stations'] ) ) {
+			$merged['stations'] = array();
+		}
+
+		// Merge per-station defaults for any station that ships as a default.
+		foreach ( $merged['stations'] as $id => $data ) {
+			if ( isset( $defaults['stations'][ $id ] ) && is_array( $data ) ) {
+				$merged['stations'][ $id ] = array_merge( $defaults['stations'][ $id ], $data );
 			}
 		}
 
-		return $saved;
+		return $merged;
 	}
 
 	/**
@@ -156,7 +143,14 @@ final class Settings {
 			return self::defaults();
 		}
 
-		$clean = array( 'stations' => array() );
+		$clean = array(
+			'stations'                      => array(),
+			'comments_label'                => 'Start Time',
+			'delete_playlists_on_uninstall' => false,
+		);
+
+		$clean['comments_label']                = trim( sanitize_text_field( (string) ( $input['comments_label'] ?? '' ) ) );
+		$clean['delete_playlists_on_uninstall'] = ! empty( $input['delete_playlists_on_uninstall'] );
 
 		$stations = ( isset( $input['stations'] ) && is_array( $input['stations'] ) ) ? $input['stations'] : array();
 
@@ -257,20 +251,30 @@ final class Settings {
 			<form method="post" action="options.php">
 				<?php settings_fields( 'wordpress_playlists' ); ?>
 
-				<?php foreach ( $stations as $id => $station ) { $this->render_station( $id, $station ); } ?>
+				<?php
+				if ( empty( $stations ) ) {
+					echo '<p><strong>' . esc_html__( 'No stations configured yet. Add one below.', 'wordpress-playlists' ) . '</strong></p>';
+				}
+
+				foreach ( $stations as $id => $station ) {
+					$this->render_station( $id, $station );
+				}
+				?>
 
 				<h2><?php esc_html_e( 'Add a station', 'wordpress-playlists' ); ?></h2>
 				<table class="form-table" role="presentation">
 					<tr>
 						<th scope="row"><label for="wordpress-playlists-new-slug"><?php esc_html_e( 'New station slug', 'wordpress-playlists' ); ?></label></th>
 						<td>
-							<input type="text" id="wordpress-playlists-new-slug" class="regular-text" name="wordpress_playlists_settings[new_station_slug]" value="" placeholder="e.g. rtv1ijsseldelta" />
+							<input type="text" id="wordpress-playlists-new-slug" class="regular-text" name="wordpress_playlists_settings[new_station_slug]" value="" placeholder="e.g. my-station" />
 							<p class="description">
 								<?php esc_html_e( 'Enter a unique slug (lowercase letters, numbers and dashes) and save to add a new station. It is created disabled with an empty API key.', 'wordpress-playlists' ); ?>
 							</p>
 						</td>
 					</tr>
 				</table>
+
+				<?php $this->render_general_settings(); ?>
 
 				<?php submit_button(); ?>
 			</form>
@@ -358,6 +362,40 @@ final class Settings {
 						<input type="checkbox" name="wordpress_playlists_settings[stations][<?php echo esc_attr( $id ); ?>][delete]" value="1" />
 						<?php esc_html_e( 'Delete this station when saving', 'wordpress-playlists' ); ?>
 					</label>
+				</td>
+			</tr>
+		</table>
+		<?php
+	}
+
+	/**
+	 * Render the plugin-wide settings (comment column label, uninstall
+	 * behavior).
+	 */
+	private function render_general_settings(): void {
+		$settings = self::get();
+		?>
+		<h2><?php esc_html_e( 'General', 'wordpress-playlists' ); ?></h2>
+		<table class="form-table" role="presentation">
+			<tr>
+				<th scope="row"><label for="wp-playlists-comments-label"><?php esc_html_e( 'Playlist comment column label', 'wordpress-playlists' ); ?></label></th>
+				<td>
+					<input type="text" id="wp-playlists-comments-label" class="regular-text" name="wordpress_playlists_settings[comments_label]" value="<?php echo esc_attr( (string) ( $settings['comments_label'] ?? '' ) ); ?>" />
+					<p class="description">
+						<?php esc_html_e( 'Radio Station calls the track start-time column "Comments". Use this field to rename it (for example "Start Time" or "Starttijd"). Leave empty to keep Radio Station\'s default wording.', 'wordpress-playlists' ); ?>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><?php esc_html_e( 'Uninstall behavior', 'wordpress-playlists' ); ?></th>
+				<td>
+					<label>
+						<input type="checkbox" name="wordpress_playlists_settings[delete_playlists_on_uninstall]" value="1" <?php checked( ! empty( $settings['delete_playlists_on_uninstall'] ) ); ?> />
+						<?php esc_html_e( 'Delete all playlist posts when the plugin is uninstalled', 'wordpress-playlists' ); ?>
+					</label>
+					<p class="description">
+						<?php esc_html_e( 'WARNING: playlists are valuable content created by the Radio Station plugin. When enabled, uninstalling this plugin permanently deletes every playlist post - this cannot be undone. It is disabled by default and should stay disabled unless you are certain. Uninstalling only ever removes this plugin\'s own settings option otherwise.', 'wordpress-playlists' ); ?>
+					</p>
 				</td>
 			</tr>
 		</table>

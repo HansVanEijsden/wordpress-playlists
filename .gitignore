@@ -2,9 +2,6 @@
 .DS_Store
 Thumbs.db
 
-# Legacy single-file plugins (contain the old hardcoded API secret) - never publish
-/legacy/
-
 # Editor / tooling
 .idea/
 .vscode/
