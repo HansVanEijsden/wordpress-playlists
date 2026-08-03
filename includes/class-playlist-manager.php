@@ -66,7 +66,7 @@ final class Playlist_Manager {
 			return new \WP_Error( 'no_show', __( 'No current show found at this time.', 'wordpress-playlists' ), array( 'status' => 404 ) );
 		}
 
-		$playlist_id = $this->get_todays_playlist( (int) $show['id'] );
+		$playlist_id = $this->get_todays_playlist( $show['name'] );
 
 		if ( ! $playlist_id ) {
 			$playlist_id = $this->create_playlist( (int) $show['id'], $show['name'], $show['avatar_id'] );
@@ -97,51 +97,54 @@ final class Playlist_Manager {
 	/**
 	 * Find today's playlist for a show.
 	 *
-	 * The lookup relies on the playlist title format
-	 * "<date_i18n('j F Y')> - <show name>" via a fuzzy WP_Query title search
-	 * plus a case-insensitive stripos check. This is a deliberate choice that
-	 * must stay in sync with the live Radio Station data.
+	 * Playlists are titled "<date_i18n('j F Y')> - <show name>". The lookup is
+	 * a direct post-title query on the day's date prefix rather than a WP_Query
+	 * fuzzy "s" search, so it stays correct even when another plugin - e.g. a
+	 * fulltext-search mu-plugin - rewrites WordPress search clauses. The show
+	 * is matched by its name inside the title (the Radio Station title
+	 * contract), not by the playlist_show_id meta, because a metadata hub's
+	 * show ID may not match the value Radio Station stored.
 	 *
+	 * @param string $show_name Show name from the metadata API.
 	 * @return int|false
 	 */
-	private function get_todays_playlist( int $show_id ) {
-		$today_date = date_i18n( 'j F Y' );
+	private function get_todays_playlist( string $show_name ) {
+		global $wpdb;
 
-		$args = array(
-			'post_type'      => 'playlist',
-			'post_status'    => 'publish',
-			'posts_per_page' => 1,
-			'meta_query'     => array(
-				array(
-					'key'     => 'playlist_show_id',
-					'value'   => $show_id,
-					'compare' => '=',
-					'type'    => 'NUMERIC',
-				),
-			),
-			's'       => $today_date,
-			'orderby' => 'date',
-			'order'   => 'DESC',
+		$today_date = date_i18n( 'j F Y' );
+		$show_name  = trim( (string) $show_name );
+		$prefix     = $wpdb->esc_like( $today_date ) . '%';
+
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT ID, post_title
+				 FROM {$wpdb->posts}
+				 WHERE post_type = 'playlist'
+				   AND post_status = 'publish'
+				   AND post_title LIKE %s
+				 ORDER BY post_date DESC
+				 LIMIT 20",
+				$prefix
+			)
 		);
 
-		$query = new \WP_Query( $args );
-
-		if ( ! $query->have_posts() ) {
+		if ( empty( $rows ) ) {
 			return false;
 		}
 
-		$playlist_id = false;
-		while ( $query->have_posts() ) {
-			$query->the_post();
-			if ( false !== stripos( (string) get_the_title(), $today_date ) ) {
-				$playlist_id = (int) get_the_ID();
-				break;
+		// Prefer the newest playlist whose title also contains this show's
+		// name; fall back to the newest playlist matching today's date.
+		$fallback = 0;
+		foreach ( $rows as $row ) {
+			if ( 0 === $fallback ) {
+				$fallback = (int) $row->ID;
+			}
+			if ( '' !== $show_name && false !== stripos( (string) $row->post_title, $show_name ) ) {
+				return (int) $row->ID;
 			}
 		}
 
-		wp_reset_postdata();
-
-		return $playlist_id;
+		return $fallback;
 	}
 
 	/**

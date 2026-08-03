@@ -4,7 +4,7 @@ Tags: radio, playlist, radio-station, rest-api, broadcast
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,12 @@ No. Featured images are set with existing attachment IDs only (the show avatar i
 No. By default uninstalling only removes the plugin's own settings option. Playlists are only deleted if you explicitly enable "Delete all playlist posts when the plugin is uninstalled" on the settings page - and even then only playlist posts are targeted, nothing else.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixed today's-playlist lookup: it now queries the post title directly instead of a fuzzy WP_Query search, so search-rewriting plugins (e.g. a fulltext-search mu-plugin) can no longer cause one playlist per track.
+* Metadata API endpoint is now auto-detected (blank field falls back to /wp-json/metadata/v1/current); an explicit URL still overrides it.
+* Settings page: fallback image is now chosen via the WordPress media library, and the playlist post author via a user dropdown.
+* Settings page now shows a ready-to-paste metadata hub output block (URL, method, payload mapping). The API key is never displayed.
 
 = 1.0.0 =
 * Initial public release.

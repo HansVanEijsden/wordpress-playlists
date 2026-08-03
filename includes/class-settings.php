@@ -69,6 +69,28 @@ final class Settings {
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
+	}
+
+	/**
+	 * Load the media library + settings JS only on this plugin's settings page.
+	 *
+	 * @param string $hook Current admin page hook suffix.
+	 */
+	public function enqueue_admin_assets( string $hook ): void {
+		if ( 'settings_page_wordpress-playlists' !== $hook ) {
+			return;
+		}
+
+		wp_enqueue_media();
+
+		wp_enqueue_script(
+			'wordpress-playlists-settings',
+			WORDPRESS_PLAYLISTS_URL . 'assets/js/settings.js',
+			array( 'jquery' ),
+			WORDPRESS_PLAYLISTS_VERSION,
+			true
+		);
 	}
 
 	public function add_menu(): void {
@@ -173,6 +195,8 @@ final class Settings {
 
 				<?php submit_button(); ?>
 			</form>
+
+			<?php $this->render_hub_config( $settings ); ?>
 		</div>
 		<?php
 	}
@@ -216,8 +240,14 @@ final class Settings {
 			<tr>
 				<th scope="row"><label for="wp-playlists-endpoint"><?php esc_html_e( 'Metadata API endpoint', 'wordpress-playlists' ); ?></label></th>
 				<td>
-					<input type="url" id="wp-playlists-endpoint" class="regular-text code" name="wordpress_playlists_settings[api_endpoint]" value="<?php echo esc_attr( (string) ( $settings['api_endpoint'] ?? '' ) ); ?>" />
-					<p class="description"><?php esc_html_e( 'Returns the current show; response shape broadcast.current_show.show.{id,name,slug,avatar_id}.', 'wordpress-playlists' ); ?></p>
+					<?php $default_endpoint = trailingslashit( site_url() ) . 'wp-json/metadata/v1/current'; ?>
+					<input type="url" id="wp-playlists-endpoint" class="regular-text code" name="wordpress_playlists_settings[api_endpoint]" value="<?php echo esc_attr( (string) ( $settings['api_endpoint'] ?? '' ) ); ?>" placeholder="<?php echo esc_attr( $default_endpoint ); ?>" />
+					<p class="description">
+						<?php esc_html_e( 'Returns the current show; response shape broadcast.current_show.show.{id,name,slug,avatar_id}.', 'wordpress-playlists' ); ?>
+						<br />
+						<?php esc_html_e( 'Leave blank to auto-detect:', 'wordpress-playlists' ); ?>
+						<code><?php echo esc_html( $default_endpoint ); ?></code>
+					</p>
 				</td>
 			</tr>
 			<tr>
@@ -237,17 +267,44 @@ final class Settings {
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="wp-playlists-fallback"><?php esc_html_e( 'Fallback image ID', 'wordpress-playlists' ); ?></label></th>
+				<th scope="row"><?php esc_html_e( 'Fallback image', 'wordpress-playlists' ); ?></th>
 				<td>
-					<input type="number" id="wp-playlists-fallback" min="0" step="1" name="wordpress_playlists_settings[fallback_image_id]" value="<?php echo esc_attr( (string) absint( $settings['fallback_image_id'] ?? 0 ) ); ?>" />
-					<p class="description"><?php esc_html_e( 'Attachment ID used for the playlist featured image when the current show has no avatar.', 'wordpress-playlists' ); ?></p>
+					<?php $fallback_id = absint( $settings['fallback_image_id'] ?? 0 ); ?>
+					<input type="hidden" id="wp-playlists-fallback" name="wordpress_playlists_settings[fallback_image_id]" value="<?php echo esc_attr( (string) $fallback_id ); ?>" />
+					<div id="wp-playlists-fallback-preview">
+						<?php
+						if ( $fallback_id ) {
+							$fallback_url = wp_get_attachment_image_url( $fallback_id, 'thumbnail' );
+							if ( $fallback_url ) {
+								echo '<img src="' . esc_url( $fallback_url ) . '" alt="" style="max-width:120px;height:auto;border:1px solid #ccd0d4;border-radius:4px;" />';
+							}
+						}
+						?>
+					</div>
+					<p>
+						<button type="button" class="button" id="wp-playlists-fallback-select"><?php esc_html_e( 'Select image', 'wordpress-playlists' ); ?></button>
+						<button type="button" class="button" id="wp-playlists-fallback-remove" style="<?php echo $fallback_id ? '' : 'display:none;'; ?>"><?php esc_html_e( 'Remove', 'wordpress-playlists' ); ?></button>
+					</p>
+					<p class="description"><?php esc_html_e( 'Image used for the playlist featured image when the current show has no avatar. Choose it from the media library; the attachment ID is stored.', 'wordpress-playlists' ); ?></p>
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="wp-playlists-author"><?php esc_html_e( 'Post author ID', 'wordpress-playlists' ); ?></label></th>
+				<th scope="row"><?php esc_html_e( 'Post author', 'wordpress-playlists' ); ?></th>
 				<td>
-					<input type="number" id="wp-playlists-author" min="0" step="1" name="wordpress_playlists_settings[post_author]" value="<?php echo esc_attr( (string) absint( $settings['post_author'] ?? 0 ) ); ?>" />
-					<p class="description"><?php esc_html_e( 'User ID assigned to created playlist posts.', 'wordpress-playlists' ); ?></p>
+					<?php
+					wp_dropdown_users(
+						array(
+							'name'              => 'wordpress_playlists_settings[post_author]',
+							'id'                => 'wp-playlists-author',
+							'selected'          => absint( $settings['post_author'] ?? 0 ),
+							'show_option_none'  => __( 'Select an author', 'wordpress-playlists' ),
+							'option_none_value' => '0',
+							'role__not_in'      => array( 'subscriber' ),
+							'show'              => 'display_name_with_login',
+						)
+					);
+					?>
+					<p class="description"><?php esc_html_e( 'User assigned to created playlist posts.', 'wordpress-playlists' ); ?></p>
 				</td>
 			</tr>
 		</table>
@@ -284,6 +341,47 @@ final class Settings {
 				</td>
 			</tr>
 		</table>
+		<?php
+	}
+
+	/**
+	 * Render a ready-to-paste output block for the metadata hub's config.json.
+	 * The API key itself is never displayed; the hub must use the same value
+	 * as the API key setting above.
+	 *
+	 * @param array $settings Merged settings.
+	 */
+	private function render_hub_config( array $settings ): void {
+		$namespace = (string) ( $settings['rest_namespace'] ?? '' );
+		$url       = rest_url( $namespace . '/playlist/track' );
+
+		$output = array(
+			'type'     => 'url',
+			'name'     => 'radio-playlist-website',
+			'inputs'   => array( 'radio-playout-main' ),
+			'settings' => array(
+				'delay'          => 10,
+				'url'            => $url,
+				'method'         => 'POST',
+				'bearerToken'    => '<same value as the API key setting above>',
+				'payloadMapping' => array(
+					'artist'   => '{{.artist}}',
+					'title'    => '{{.title}}',
+					'duration' => '{{.duration}}',
+				),
+			),
+		);
+
+		$json = wp_json_encode( $output, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+		?>
+		<h2><?php esc_html_e( 'Metadata hub configuration', 'wordpress-playlists' ); ?></h2>
+		<p>
+			<?php esc_html_e( 'Paste this output block into the metadata hub\'s config.json (adapt name, inputs and delay to your hub). The bearerToken must be the same value as the API key configured above; it is never displayed here.', 'wordpress-playlists' ); ?>
+		</p>
+		<div id="wp-playlists-hub-config">
+			<pre><code><?php echo esc_html( (string) $json ); ?></code></pre>
+			<button type="button" class="button" id="wp-playlists-copy-hub-config"><?php esc_html_e( 'Copy', 'wordpress-playlists' ); ?></button>
+		</div>
 		<?php
 	}
 }

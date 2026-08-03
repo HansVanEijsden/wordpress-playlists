@@ -30,7 +30,7 @@ final class Station {
 		$this->enabled           = ! empty( $data['enabled'] );
 		$this->name              = sanitize_text_field( (string) ( $data['station_name'] ?? '' ) );
 		$this->rest_namespace    = sanitize_text_field( (string) ( $data['rest_namespace'] ?? '' ) );
-		$this->api_endpoint      = esc_url_raw( (string) ( $data['api_endpoint'] ?? '' ) );
+		$this->api_endpoint      = $this->resolve_api_endpoint( $data );
 		$this->api_key           = (string) ( $data['api_key'] ?? '' );
 		$this->fallback_image_id = absint( $data['fallback_image_id'] ?? 0 );
 		$this->post_author       = absint( $data['post_author'] ?? 0 );
@@ -74,5 +74,23 @@ final class Station {
 			&& '' !== $this->rest_namespace
 			&& '' !== $this->api_endpoint
 			&& '' !== $this->api_key;
+	}
+
+	/**
+	 * Resolve the metadata API endpoint. An explicitly configured URL wins;
+	 * otherwise the plugin auto-detects the conventional
+	 * "/wp-json/metadata/v1/current" endpoint on this site, so the field can
+	 * be left blank on setups that follow that convention.
+	 *
+	 * @param array $data Raw settings from the options table.
+	 */
+	private function resolve_api_endpoint( array $data ): string {
+		$configured = esc_url_raw( (string) ( $data['api_endpoint'] ?? '' ) );
+
+		if ( '' !== $configured ) {
+			return $configured;
+		}
+
+		return trailingslashit( site_url() ) . 'wp-json/metadata/v1/current';
 	}
 }

@@ -18,6 +18,8 @@ Everything is in **English**: code, comments, docs, this file. The only site-fac
 | `includes/class-playlist-manager.php` | Finds/creates today's playlist, appends tracks (Radio Station contract). |
 | `includes/class-logger.php` | `error_log` helper, prefix `[WordPress Playlists][<station>]`. |
 | `includes/class-gettext.php` | Renames Radio Station `Comments`/`Comment` → configured label (default `Start Time`). |
+| `assets/js/settings.js` | Settings page: fallback-image media picker + copy button for the hub config block. |
+| `tools/merge-duplicate-playlists.php` | CLI-only maintenance tool that merges duplicate daily playlists back into one per show (dry-run by default). |
 | `uninstall.php`, `readme.txt`, `README.md`, `LICENSE`, `.editorconfig`, `.github/workflows/ci.yml` | Housekeeping / distribution / CI. |
 
 All classes live in the `WordPressPlaylists\` namespace.
@@ -39,13 +41,13 @@ One WordPress site = one radio station (that is how the Radio Station plugin wor
 1. A metadata hub `POST`s a track to `/wp-json/<namespace>/playlist/track`. The namespace is the admin-configurable path segment between `/wp-json/` and `/playlist/track` (e.g. `mysite/v1`) and must match what the hub posts to.
 2. Auth against the configured key; track validated (artist + title required).
 3. Duration: optional; `< 120s` rejected (HTTP 422); empty or unparseable ACCEPTED with a warning log — don't change that into a hard error without asking.
-4. Current show fetched from the metadata API — shape `body.broadcast.current_show.show.{id,name,slug,avatar_id}`.
+4. Current show fetched from the metadata API — shape `body.broadcast.current_show.show.{id,name,slug,avatar_id}`. The endpoint auto-detects to `<site>/wp-json/metadata/v1/current` when the settings field is left blank (enter a custom URL to override).
 5. Finds or creates today's playlist post, then appends the track to its `playlist` post meta.
 
 ### Radio Station data contract (do not change)
 
 - Post type: `playlist`; linked to show via meta `playlist_show_id` (NUMERIC).
-- Playlist title: `date_i18n('j F Y') - <show name>` (site-locale date, e.g. `3 augustus 2026 - Morning Show`). Today's-playlist lookup (`Playlist_Manager::get_todays_playlist`) depends on this exact format via fuzzy title search (`'s' => $today_date`) + `stripos` — a deliberate, relatively expensive choice; don't replace it with a meta-only query without checking the user.
+- Playlist title: `date_i18n('j F Y') - <show name>` (site-locale date, e.g. `3 augustus 2026 - Morning Show`). Today's-playlist lookup (`Playlist_Manager::get_todays_playlist`) matches playlists whose title starts with today's date via a direct `post_title LIKE '<date>%'` query, then picks the newest whose title also contains the current show name (`stripos`). This deliberately bypasses `WP_Query`'s fuzzy `'s'` search because search-rewriting plugins (e.g. a fulltext-search mu-plugin) broke it on 2026-08-03 (one playlist per track on 1Zwolle and Salland1). It also matches the show by name in the title rather than `playlist_show_id` meta, since a metadata hub's show ID may not equal the stored Radio Station show ID. Keep the title format in sync with live data.
 - Tracks in meta `playlist`, 1-based keyed array; each entry: `playlist_entry_artist`, `playlist_entry_song`, `playlist_entry_album`, `playlist_entry_label`, `playlist_entry_minutes`, `playlist_entry_seconds`, `playlist_entry_comments` (= start time `H:i`), `playlist_entry_status` (`played`).
 - Duration accepted as `MM:SS` or `MM:SS.mmm`; stored as separate minutes/seconds fields.
 - Featured image: use the API `avatar_id` only if it exists as an attachment, else the configured fallback ID. **Never download images** — `set_post_thumbnail` with existing attachment IDs only.
@@ -65,7 +67,7 @@ One WordPress site = one radio station (that is how the Radio Station plugin wor
 
 ## Pitfalls
 
-- `get_todays_playlist()` resets postdata ONCE after the loop (don't reintroduce a reset inside the loop).
+- `get_todays_playlist()` uses a direct `$wpdb` title query (no `WP_Query`, no postdata loop). Do NOT reintroduce a `WP_Query` `'s'` search — search-altering plugins (fulltext mu-plugin) break it and it caused the 2026-08-03 one-playlist-per-track incident.
 - A station that is enabled but keyless has NO registered route → the hub gets a 404 until a key is saved. That is intended behavior.
 - `date_i18n('j F Y')` respects WP locale/timezone — the title format must stay in sync with what the live sites produce.
 - Radio Station must be active (`post_type_exists('playlist')` guard in the REST handler).
