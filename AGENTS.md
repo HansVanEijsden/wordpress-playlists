@@ -2,12 +2,6 @@
 
 WordPress Playlists — a production WordPress plugin that automatically builds daily radio playlists for the **Radio Station** plugin. One station per site, all configuration in the WordPress admin. Public repo: https://github.com/HansVanEijsden/wordpress-playlists — sites deploy by `git pull` into `wp-content/plugins/wordpress-radio-station-playlists`.
 
-## Server operations
-
-- Both production sites live on the SAME server: `cloud.rtv1ijsseldelta.nl` (ssh alias `RTV1IJsseldelta`). 1Zwolle (serves `1zwolle.nl`) → web root `/home/rtv1ijsseldelta/www`; Salland1 (serves `salland1.nl`) → `/home/salland1/public`. Plugin folder in each root: `wp-content/plugins/wordpress-radio-station-playlists`. Site DBs: `rtv1ijsseldelta` (prefix `wz_`) and `airplayradio` (prefix `ap_`).
-- No PHP on the host — WordPress PHP runs inside Docker containers (`rtv1ijsseldelta-rtv1ijsseldelta-php`, `salland1-salland1-php`), web root mounted at `/var/www/html`. Run the CLI tools as `docker exec <container> php tools/<tool>.php ...` from `/var/www/html/wp-content/plugins/wordpress-radio-station-playlists`.
-- Run git as the site user (`sudo -u rtv1ijsseldelta` / `sudo -u salland1`) — as root, git fails with "dubious ownership". Deploy = `git -C <plugin dir> pull --ff-only`.
-
 ## Project language
 
 Everything is in **English**: code, comments, docs, this file. The only site-facing strings that may be localized per site are the playlist comment column label (admin-configurable, see General settings) and the playlist titles, which use `date_i18n()` and therefore follow the site locale (a Radio Station data contract).
@@ -79,5 +73,4 @@ One WordPress site = one radio station (that is how the Radio Station plugin wor
 - `date_i18n('j F Y')` respects WP locale/timezone — the title format must stay in sync with what the live sites produce.
 - Radio Station must be active (`post_type_exists('playlist')` guard in the REST handler).
 - Uninstall is deliberately conservative: it only removes the plugin option; playlist deletion happens only when `delete_playlists_on_uninstall` is explicitly enabled in settings (default off). Keep it that way — playlists are valuable content.
-- Both sites use the SQLite Object Cache drop-in (`wp-content/object-cache.php`). Direct DB writes and CLI-tool changes can be masked by the cache — flush the object cache before trusting track counts after running the tools. Change options (e.g. `active_plugins`) via WordPress (`update_option`), not raw `UPDATE wp_options`, or the old value keeps being served from cache.
 
