@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name:       WordPress Playlists
+ * Plugin Name:       Radio Station Playlists
  * Plugin URI:        https://github.com/HansVanEijsden/wordpress-playlists
  * Description:       Automatic daily radio playlists for the Radio Station plugin. A metadata hub posts each played track to the plugin's REST endpoint, which appends it to the correct daily playlist for the current show. One station per site, fully configurable in the WordPress admin.
  * Version:           1.0.2
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Requires Plugins:  radio-station
- * Author:            Hans van Eijsden
+ * Author:            Hans van Eijsden Consultancy
  * Author URI:        https://www.hansvaneijsden.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
