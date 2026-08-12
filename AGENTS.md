@@ -1,6 +1,6 @@
 # AGENTS.md
 
-WordPress Playlists — a production WordPress plugin that automatically builds daily radio playlists for the **Radio Station** plugin. One station per site, all configuration in the WordPress admin. Public repo: https://github.com/HansVanEijsden/wordpress-playlists — sites deploy by `git pull` into `wp-content/plugins/wordpress-playlists`.
+WordPress Playlists — a production WordPress plugin that automatically builds daily radio playlists for the **Radio Station** plugin. One station per site, all configuration in the WordPress admin. Public repo: https://github.com/HansVanEijsden/wordpress-playlists — sites deploy by `git pull` into `wp-content/plugins/wordpress-radio-station-playlists`.
 
 ## Project language
 
