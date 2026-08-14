@@ -10,7 +10,7 @@ Everything is in **English**: code, comments, docs, this file. The only site-fac
 
 | Path | Purpose |
 |---|---|
-| `wordpress-playlists.php` | Plugin bootstrap + header (author: Hans van Eijsden). |
+| `wordpress-playlists.php` | Plugin bootstrap + header (author: Hans van Eijsden Consultancy). |
 | `includes/class-settings.php` | Admin settings page (Settings → WordPress Playlists) + sanitization. |
 | `includes/class-station.php` | Immutable value object for this site's single station (typed, sanitized). |
 | `includes/class-rest-controller.php` | Registers `/wp-json/<namespace>/playlist/track` + auth. |
@@ -18,6 +18,7 @@ Everything is in **English**: code, comments, docs, this file. The only site-fac
 | `includes/class-playlist-manager.php` | Finds/creates today's playlist, appends tracks (Radio Station contract). |
 | `includes/class-logger.php` | `error_log` helper, prefix `[WordPress Playlists][<station>]`. |
 | `includes/class-gettext.php` | Renames Radio Station `Comments`/`Comment` → configured label (default `Start Time`). |
+| `includes/class-plugin.php` | Main bootstrap: loads the text domain, shows dependency / missing-API-key admin notices, instantiates Settings, Rest_Controller and Gettext_Filters. |
 | `assets/js/settings.js` | Settings page: fallback-image media picker + copy button for the hub config block. |
 | `tools/merge-duplicate-playlists.php` | CLI-only maintenance tool that merges duplicate daily playlists back into one per show (dry-run by default). |
 | `tools/move-tracks-between-playlists.php` | CLI-only maintenance tool that moves tracks with a start time >= `HH:MM` from one of today's playlists into another (e.g. recovering tracks misrouted to the previous show's playlist; dry-run by default). |
@@ -62,7 +63,7 @@ One WordPress site = one radio station (that is how the Radio Station plugin wor
 
 ## Validation
 
-- CI (`.github/workflows/ci.yml`) runs `php -l` over every PHP file on PHP 7.4 and 8.2 for every push/PR.
+- CI (`.github/workflows/ci.yml`) runs `php -l` over every PHP file on PHP 7.4 and 8.2 on every push to `main` and every pull request.
 - Locally: `for f in $(find . -name '*.php'); do php -l "$f"; done` (PHP available on this Mac).
 - Runtime behavior is only verifiable on live sites after `git pull` + configuring the station in admin.
 
