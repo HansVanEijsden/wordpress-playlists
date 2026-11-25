@@ -15,9 +15,6 @@ defined( 'ABSPATH' ) || exit;
 
 final class Playlist_View {
 
-	/** Post IDs rendered in this request (themes sometimes call the_content twice). */
-	private static array $rendered = array();
-
 	/**
 	 * Hook registration.
 	 */
@@ -79,12 +76,6 @@ final class Playlist_View {
 		if ( ! did_action( 'wp_head' ) ) {
 			return (string) $content;
 		}
-
-		if ( isset( self::$rendered[ $post_id ] ) ) {
-			return (string) $content;
-		}
-
-		self::$rendered[ $post_id ] = true;
 
 		$data                  = $this->data( $post_id );
 		$data['content_html']  = (string) $content;
