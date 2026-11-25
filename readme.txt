@@ -2,13 +2,13 @@
 Contributors: hansvaneijsden
 Tags: radio, playlist, radio-station, rest-api, broadcast
 Requires at least: 5.8
-Tested up to: 6.7
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.1.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Automatic daily radio playlists for the Radio Station plugin. A metadata hub posts each played track to the plugin's REST endpoint, which appends it to the correct daily playlist for the current show.
+Automatic daily radio playlists for the Radio Station plugin, plus a designed public airplay archive: a hub, month pages, playlist pages and one canonical page per artist, with SEO structured data and optional listen-back through Broadcast Archive.
 
 == Description ==
 
@@ -33,6 +33,21 @@ Each WordPress site (or subsite) has one radio station, configured under **Setti
 * **API key** – accepted via `X-API-Key` header, `Authorization: Bearer` or `?secret=` query parameter (the metadata hub uses a bearer token). Stored in the options table, never displayed.
 * **Fallback image ID** – attachment used for the playlist featured image when the show has no avatar.
 * **Post author ID** – user assigned to created playlist posts.
+
+= Public presentation =
+
+Turning **Designed playlists** on replaces Radio Station's bare playlist content with an airplay sheet and adds the public archive. All values are settings, and the plugin stays station-agnostic:
+
+* **Accent colour** - one station colour; an accessible darker text colour and tints are derived at render time.
+* **Hub page** - the page containing `[wordpress_playlists]`; month pages live under its path.
+* **Artist URLs** - rewrite bases for `/artiest/<slug>/` and the artist index `/artiesten/`.
+* **Local artists** - editorial flag, photo, biography and links on the artist screen; flagged artists can appear in the local sections.
+* **Listen-back page** - when Broadcast Archive is active, a playlist offers the matching broadcast in its shared player.
+* **Clean playlist URLs** - removes a site's front path from playlist permalinks (for example `/nieuws/playlist/`) and permanently redirects the old URLs.
+
+Shortcodes: `[wordpress_playlists]` (hub) and `[wordpress_playlists_artist name="Artist" tracks="3"]` (artist card for articles).
+
+The derived artist index is rebuilt with WP-CLI: `wp wppl rebuild --dry-run`, then `wp wppl rebuild`; `wp wppl status` shows the counts. On multisite add `--url`.
 
 = General settings =
 
@@ -80,6 +95,16 @@ No. Featured images are set with existing attachment IDs only (the show avatar i
 No. By default uninstalling only removes the plugin's own settings option. Playlists are only deleted if you explicitly enable "Delete all playlist posts when the plugin is uninstalled" on the settings page - and even then only playlist posts are targeted, nothing else.
 
 == Changelog ==
+
+= 1.1.0 =
+* Added the public airplay archive: hub shortcode, month pages, redesigned playlist pages and a canonical page per artist.
+* Added the `playlist_artist` taxonomy with play counters, per-artist track summaries and editorial photo, biography, links and local flag.
+* Added public search over artist names and track titles, an A-Z artist index with letter pages, an artist sitemap and structured data (MusicPlaylist, MusicGroup, ItemList).
+* Added titles, meta descriptions, canonicals and robots integration with Yoast SEO, with a plain-WordPress fallback.
+* Added permanent redirects for the Radio Station playlist archive, `?offset=` pagination and, optionally, playlist URLs with a front path; the old URLs consolidate on the hub and the cleaned playlist URLs.
+* Added optional listen-back through Broadcast Archive and an embeddable artist card for editorial articles.
+* Added the `wp wppl rebuild`, `wp wppl status` and `wp wppl recount` commands, a preview harness and a dependency-free test suite.
+* Added Dutch translations.
 
 = 1.0.2 =
 * Fixed today's-playlist lookup for brand-new shows: when a show name is provided but no today's playlist title contains it, a new playlist is now created. Previously the track was silently appended to the newest same-day playlist (the previous show's), so a new show (e.g. "Avond aan de IJssel" on Salland1) got no playlist of its own.

@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-25T23:55:00+01:00",
+  "title": "Design System: WordPress Playlists",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#16181d",
+        "tonalRamp": [
+          "#000000",
+          "#0b0c0f",
+          "#16181d",
+          "#2c313a",
+          "#3f4652",
+          "#626c7a",
+          "#aab2bd",
+          "#e5e7eb"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "#3f4652",
+        "tonalRamp": [
+          "#16181d",
+          "#252a33",
+          "#323844",
+          "#3f4652",
+          "#586272",
+          "#7d8794",
+          "#b7bec7",
+          "#eef0f3"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#626c7a",
+        "tonalRamp": [
+          "#3f4652",
+          "#4c5562",
+          "#586270",
+          "#626c7a",
+          "#818a96",
+          "#a7aeb8",
+          "#cfd4dc",
+          "#f6f7f9"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e5e7eb",
+        "tonalRamp": [
+          "#cfd4dc",
+          "#d9dde3",
+          "#e5e7eb",
+          "#eceef2",
+          "#f6f7f9"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Hairline Strong",
+        "canonical": "#cfd4dc",
+        "tonalRamp": [
+          "#aab2bd",
+          "#bcc3cc",
+          "#cfd4dc",
+          "#dfe3e8",
+          "#eef0f3"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#ffffff",
+          "#fbfbfc",
+          "#f6f7f9",
+          "#eef0f3"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Paper Tint",
+        "canonical": "#f6f7f9",
+        "tonalRamp": [
+          "#eef0f3",
+          "#f2f4f6",
+          "#f6f7f9",
+          "#fafbfc"
+        ]
+      },
+      "dark": {
+        "role": "neutral",
+        "displayName": "Broadcast Plate",
+        "canonical": "#14161c",
+        "tonalRamp": [
+          "#000000",
+          "#0a0b0f",
+          "#14161c",
+          "#232630",
+          "#343946"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Station Accent",
+        "canonical": "#e50526",
+        "tonalRamp": [
+          "#5e0210",
+          "#8c0319",
+          "#b3041e",
+          "#d70423",
+          "#e50526",
+          "#f43b55",
+          "#f97a8c",
+          "#fdd5db"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Accent Ink",
+        "canonical": "#b3041e",
+        "tonalRamp": [
+          "#5e0210",
+          "#8c0319",
+          "#b3041e",
+          "#d70423"
+        ]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Faint Ink",
+        "canonical": "#9aa2ad",
+        "tonalRamp": [
+          "#6d7581",
+          "#7f8793",
+          "#8f97a2",
+          "#9aa2ad",
+          "#b4bac2",
+          "#cfd4dc"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "page-title": {
+        "displayName": "Page title",
+        "purpose": "Month and artist index page titles."
+      },
+      "artist-name": {
+        "displayName": "Artist name",
+        "purpose": "The canonical name on an artist page."
+      },
+      "plate-title": {
+        "displayName": "Plate title",
+        "purpose": "Programme name on the dark broadcast plate."
+      },
+      "section-title": {
+        "displayName": "Section title",
+        "purpose": "Hub and artist section headings."
+      },
+      "row-title": {
+        "displayName": "Row title",
+        "purpose": "Programme name in hub, month and day rows."
+      },
+      "track-artist": {
+        "displayName": "Track artist",
+        "purpose": "The linked artist name in the sheet."
+      },
+      "track-title": {
+        "displayName": "Track title",
+        "purpose": "The song title after the em dash."
+      },
+      "time": {
+        "displayName": "Time",
+        "purpose": "Start times, durations and counts; always tabular."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Secondary metadata and descriptions."
+      },
+      "hour-number": {
+        "displayName": "Hour numeral",
+        "purpose": "The oversized hour in an hour band."
+      }
+    },
+    "shadows": [
+      {
+        "name": "none",
+        "value": "none",
+        "purpose": "The surface is flat; hairlines and tonal panels carry separation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-fade",
+        "value": "160ms cubic-bezier(0.22, 0.61, 0.36, 1)",
+        "purpose": "Link underline, hover background and border changes."
+      },
+      {
+        "name": "hour-jump",
+        "value": "native anchor, smooth only without reduced-motion",
+        "purpose": "Jumping to an hour in a long broadcast."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "plate-compact",
+        "value": "760px"
+      },
+      {
+        "name": "sheet-narrow",
+        "value": "560px"
+      },
+      {
+        "name": "row-start-only",
+        "value": "420px"
+      },
+      {
+        "name": "artist-two-column",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Broadcast plate",
+      "kind": "section",
+      "refersTo": "plate",
+      "description": "The only dark object on a playlist page: programme artwork, name, date, time span, track count and a link to the programme.",
+      "html": "<section class=\"wppl-plate\"><div class=\"wppl-plate-art\"><span class=\"wppl-plate-mono\">SC</span></div><div class=\"wppl-plate-body\"><h2 class=\"wppl-plate-title\"><a href=\"#\">Sallands Café</a></h2><p class=\"wppl-plate-meta\"><time datetime=\"2026-11-25T19:31:00+01:00\">25 november 2026</time><span class=\"wppl-plate-span\">19:05 – 19:33</span><span class=\"wppl-plate-count\">8 nummers</span></p><a class=\"wppl-plate-link\" href=\"#\">Alle afspeellijsten van dit programma →</a></div></section>",
+      "css": ".wppl-plate{display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;padding:20px;border-radius:16px;background:#14161c;color:#f4f5f7}.wppl-plate-art{width:96px;height:96px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center}.wppl-plate-mono{font-size:30px;font-weight:700}.wppl-plate-title{font-size:23px;font-weight:700;line-height:1.18}.wppl-plate-meta{display:flex;flex-wrap:wrap;gap:1px 6px;font-size:13px;color:rgba(244,245,247,.72);font-variant-numeric:tabular-nums}.wppl-plate-meta>*:not(:last-child)::after{content:\"·\";padding-left:6px;color:rgba(244,245,247,.38)}.wppl-plate-link{display:inline-flex;gap:6px;margin-top:10px;font-size:12px;font-weight:600;color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.35)}"
+    },
+    {
+      "name": "Track row",
+      "kind": "table-row",
+      "refersTo": "track-row",
+      "description": "Time, artist link and track title, duration. Hairline separated, 44px, tabular time; artist underlined in the station accent.",
+      "html": "<table class=\"wppl-sheet-table\"><thead><tr><th scope=\"col\">Tijd</th><th scope=\"col\">Artiest en nummer</th><th scope=\"col\">Duur</th></tr></thead><tbody><tr class=\"wppl-track\" data-wppl-time=\"23:24\"><td class=\"wppl-track-time\"><time datetime=\"23:24\">23:24</time></td><td class=\"wppl-track-main\"><a class=\"wppl-artist\" href=\"#\">Bow Wow Wow</a><span class=\"wppl-sep wppl-sep--track\">—</span><span class=\"wppl-title\">The Man Mountain</span></td><td class=\"wppl-track-duration\">3:37</td></tr></tbody></table>",
+      "css": ".wppl-sheet-table{width:100%;border-collapse:collapse}.wppl-sheet-table th{padding:10px 8px;border-bottom:1px solid #cfd4dc;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;text-align:left;color:#626c7a}.wppl-track{border-bottom:1px solid #e5e7eb}.wppl-track td{padding:11px 8px;vertical-align:baseline}.wppl-track-time{width:62px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}.wppl-artist{font-size:14px;font-weight:650;color:#16181d;text-decoration:underline;text-decoration-color:#e50526;text-underline-offset:3px}.wppl-sep--track{padding:0 .4em;color:#9aa2ad}.wppl-title{font-size:14px;color:#3f4652}.wppl-track-duration{width:58px;text-align:right;font-size:12px;color:#626c7a;font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Hour band",
+      "kind": "table-row",
+      "refersTo": "hour-row",
+      "description": "A large hour numeral, the word hour and the track count on a strong hairline; anchors every hour in a long broadcast.",
+      "html": "<tr class=\"wppl-hour-row\" id=\"hour-19\"><th colspan=\"3\" scope=\"rowgroup\"><span class=\"wppl-hour-number\">19</span><span class=\"wppl-hour-word\">uur</span><span class=\"wppl-hour-total\">17 nummers</span></th></tr>",
+      "css": ".wppl-hour-row th{padding:26px 8px 7px;border-bottom:1px solid #cfd4dc;text-align:left;font-weight:400}.wppl-hour-number{font-size:26px;font-weight:700;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}.wppl-hour-word{margin-left:7px;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#626c7a}.wppl-hour-total{float:right;font-size:11.5px;font-weight:600;color:#626c7a}"
+    },
+    {
+      "name": "Local badge",
+      "kind": "badge",
+      "refersTo": "local-badge",
+      "description": "Marks an editorial local artist; text, not colour alone.",
+      "html": "<span class=\"wppl-badge wppl-badge--local\">Lokaal</span>",
+      "css": ".wppl-badge{display:inline-flex;align-items:center;margin-left:6px;padding:2px 7px;border-radius:999px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;vertical-align:1px;white-space:nowrap}.wppl-badge--local{background:rgba(229,5,38,.09);color:#b3041e}"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "refersTo": "search-input",
+      "description": "A real labelled search form with a 44px input and a dark 44px button.",
+      "html": "<form class=\"wppl-search\" role=\"search\"><label class=\"wppl-sr\" for=\"q\">Zoek een artiest of een nummer</label><input class=\"wppl-search-input\" id=\"q\" type=\"search\" placeholder=\"Artiest of titel\" /><button class=\"wppl-search-button\" type=\"submit\">Zoeken</button></form>",
+      "css": ".wppl-search{display:flex;gap:8px}.wppl-search-input{flex:1;height:44px;padding:0 14px;border:1px solid #cfd4dc;border-radius:10px;font:inherit;font-size:15px;color:#16181d}.wppl-search-input:focus{outline:none;border-color:#e50526;box-shadow:0 0 0 3px rgba(229,5,38,.09)}.wppl-search-button{display:inline-flex;align-items:center;gap:7px;height:44px;padding:0 18px;border:1px solid #14161c;border-radius:10px;background:#14161c;color:#fff;font-size:14px;font-weight:600}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Airplay Ledger",
+    "overview": "This is the station's broadcast ledger, made public: one canonical page per artist, a month archive instead of numbered pages, and a playlist sheet whose hour spine keeps a 385-track day navigable. It inherits the host theme's typeface and takes one station accent; the only dark object is the broadcast plate.",
+    "keyCharacteristics": [
+      "One canonical page per artist; tracks are sections on it, not thin pages.",
+      "Month archive and hour anchors replace numeric pagination.",
+      "Tabular numerals for every time, count and duration.",
+      "The accent is spent on links, the local badge, the now marker and current state, never on large surfaces.",
+      "Flat surfaces and hairlines; no shadows, gradients, glass or webfonts.",
+      "Server-rendered HTML with no nonce or per-visitor state, safe for a full-page cache.",
+      "No eyebrow/kicker layer above headings; the heading carries its own context."
+    ],
+    "rules": [
+      {
+        "name": "The Single Canonical Artist Rule",
+        "body": "Every artist has one indexable page that carries all airplay; do not split an artist over track pages or repeat the entity on playlists.",
+        "section": "model"
+      },
+      {
+        "name": "The Dark Plate Rule",
+        "body": "Only the broadcast plate is dark. The page stays light so the plugin reads as part of the station's site, not as a media app pasted into it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Accent-As-Signal Rule",
+        "body": "The station accent marks links, the local badge, the now marker and current state. It never fills large regions and never carries meaning alone.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Time Rule",
+        "body": "Every time, duration, count and date uses tabular numerals and stays on one optical column.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do keep the host theme's title, breadcrumb, sidebar and advertising on playlist pages.",
+      "Do keep the month archive and the hour anchors; they are the navigation.",
+      "Do derive accent companions and verify AA on white and on the 9% tint.",
+      "Do keep the table semantic: caption, column scopes, real time elements.",
+      "Do keep the page complete without JavaScript.",
+      "Do keep the HTML identical for every visitor so the full-page cache can serve it."
+    ],
+    "donts": [
+      "Don't add numeric pagination, offset links or a card grid of playlists.",
+      "Don't add a second brand colour, a webfont, an icon font or a station name in the source.",
+      "Don't hide the programme name, the date or the current track behind an interaction.",
+      "Don't convey local, current or selected state with colour alone.",
+      "Don't add shadows, gradients, glass or decorative corner cuts.",
+      "Don't render tracks only client-side or depend on a JavaScript framework."
+    ]
+  }
+}

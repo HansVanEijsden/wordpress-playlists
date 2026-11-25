@@ -29,3 +29,6 @@ jobs:
           for f in $(find . -name '*.php' -type f); do
             php -l "$f"
           done
+
+      - name: Run the renderer tests
+        run: php tests/run.php

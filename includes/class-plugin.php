@@ -38,6 +38,35 @@ final class Plugin {
 		new Settings();
 		new Rest_Controller();
 		new Gettext_Filters();
+
+		new Taxonomy();
+		new Artist_Index();
+
+		if ( is_admin() ) {
+			new Term_Fields();
+		}
+
+		new Routes();
+		new Shortcodes();
+		new Playlist_View();
+		new SEO();
+
+		CLI::register();
+	}
+
+	/**
+	 * Activation: request a rewrite flush on the next request.
+	 */
+	public static function activate(): void {
+		update_option( 'wordpress_playlists_version', WORDPRESS_PLAYLISTS_VERSION, false );
+		update_option( 'wordpress_playlists_flush_rewrite', 1, false );
+	}
+
+	/**
+	 * Deactivation: remove our rewrite rules.
+	 */
+	public static function deactivate(): void {
+		flush_rewrite_rules( false );
 	}
 
 	public function load_textdomain(): void {
@@ -58,6 +87,24 @@ final class Plugin {
 
 		if ( Settings::missing_api_key() ) {
 			echo '<div class="notice notice-warning"><p>' . esc_html__( 'WordPress Playlists: enter an API key on the settings page before tracks can be accepted.', 'wordpress-playlists' ) . '</p></div>';
+		}
+
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+		if ( ! $screen || ! in_array( $screen->id, array( 'dashboard', 'settings_page_wordpress-playlists' ), true ) ) {
+			return;
+		}
+
+		if ( ! Context::display_enabled() ) {
+			return;
+		}
+
+		$status = Artist_Index::status();
+
+		if ( (int) $status['playlists'] > 0 && 0 === (int) $status['terms'] ) {
+			echo '<div class="notice notice-warning"><p>';
+			echo esc_html__( 'WordPress Playlists: the artist index has not been built yet. Run "wp wppl rebuild" on the server (add --url on multisite) to create the artist pages.', 'wordpress-playlists' );
+			echo '</p></div>';
 		}
 	}
 }

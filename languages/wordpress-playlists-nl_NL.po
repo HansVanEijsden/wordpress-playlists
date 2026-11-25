@@ -1,0 +1,627 @@
+# Dutch (nl_NL) translation for WordPress Playlists
+# Copyright (C) 2026 Hans van Eijsden Consultancy
+# This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress Playlists 1.1.0\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%1$s has been played %2$s times on this station: %3$s tracks, last heard on %4$s."
+msgstr "%1$s is %2$s keer gedraaid op deze zender: %3$s nummers, laatst op %4$s."
+
+msgid "%1$s: %2$s plays"
+msgstr "%1$s: %2$s keer gedraaid"
+
+msgid "A key is currently configured."
+msgstr ""
+
+msgctxt "navigation link block description"
+msgid "A link to an artist."
+msgstr ""
+
+msgid "A short biography shown on the artist page and in the structured data. Leave empty to omit it."
+msgstr ""
+
+msgid "About %s"
+msgstr "Over %s"
+
+msgid "About this artist"
+msgstr "Over deze artiest"
+
+msgid "Accent colour"
+msgstr ""
+
+msgid "Accepted via the X-API-Key header, an Authorization: Bearer header, or a ?secret= query parameter (the metadata hub uses a bearer token). Leave blank to keep the current key. The key is never displayed."
+msgstr ""
+
+msgid "Add new artist"
+msgstr ""
+
+msgid "All %1$s broadcasts from %2$s, grouped per day and programme, with every played track."
+msgstr "Alle %1$s uitzendingen uit %2$s, per dag en programma, met alle gedraaide nummers."
+
+msgid "All %1$s tracks from the broadcast of %3$s on %2$s: %4$s."
+msgstr "Alle %1$s nummers uit de uitzending van %3$s bij %2$s: %4$s."
+
+msgid "All artists"
+msgstr ""
+
+msgid "All artists A–Z"
+msgstr "Alle artiesten A–Z"
+
+msgid "All months"
+msgstr "Alle maanden"
+
+msgid "All playlists"
+msgstr "Alle afspeellijsten"
+
+msgid "All playlists and details"
+msgstr "Alle afspeellijsten en details"
+
+msgid "All playlists for %s"
+msgstr "Alle afspeellijsten van %s"
+
+msgid "All playlists for this programme"
+msgstr "Alle afspeellijsten van dit programma"
+
+msgid "API key"
+msgstr ""
+
+msgctxt "taxonomy singular name"
+msgid "Artist"
+msgstr "Artiest"
+
+msgid "Artist and track"
+msgstr "Artiest en nummer"
+
+msgid "Artist card: %s"
+msgstr "Artiestkaart: %s"
+
+msgid "Artist index"
+msgstr "Artiestenoverzicht"
+
+msgctxt "navigation link block title"
+msgid "Artist Link"
+msgstr ""
+
+msgid "Artist or track title"
+msgstr "Artiest of titel"
+
+msgid "Artist URLs"
+msgstr ""
+
+msgid "Artists"
+msgstr "Artiesten"
+
+msgctxt "taxonomy general name"
+msgid "Artists"
+msgstr "Artiesten"
+
+msgid "Artists from the region"
+msgstr "Artiesten uit de regio"
+
+msgid "Artists list"
+msgstr ""
+
+msgid "Artists list navigation"
+msgstr ""
+
+msgid "Artists starting with %s"
+msgstr "Artiesten met de letter %s"
+
+msgid "Artists starting with %s, with play counts and links to every broadcast."
+msgstr "Artiesten met de letter %s, met draaibeurten en links naar elke uitzending."
+
+msgid "Artists – everyone heard on this station"
+msgstr "Artiesten – iedereen die op de zender te horen was"
+
+msgid "Back to all playlists"
+msgstr "Terug naar alle afspeellijsten"
+
+msgid "Back to artists"
+msgstr ""
+
+msgid "Biography"
+msgstr "Biografie"
+
+msgid "Both artist and title are required."
+msgstr ""
+
+msgid "Breadcrumb"
+msgstr "Kruimelpad"
+
+msgid "Broadcasts %1$s–%2$s of %3$s"
+msgstr "Uitzendingen %1$s–%2$s van %3$s"
+
+msgid "Broadcasts from %s"
+msgstr "Uitzendingen uit %s"
+
+msgid "Browse all artists"
+msgstr "Bekijk alle artiesten"
+
+msgid "Browse by first letter"
+msgstr "Blader op eerste letter"
+
+msgid "Browse by month"
+msgstr "Blader per maand"
+
+msgid "Changing a base flushes the rewrite rules. Add a redirect from the old path at your proxy if the old URLs were indexed."
+msgstr ""
+
+msgid "Choose an image, or leave empty for a monogram."
+msgstr "Kies een afbeelding of laat leeg voor een monogram."
+
+msgid "Clean playlist URLs"
+msgstr ""
+
+msgid "Comma-separated old hub paths that should permanently redirect to the hub, for example a previous page slug. Leave empty when the hub URL never changed."
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Copy link"
+msgstr "Kopieer link"
+
+msgid "Could not add the track to the playlist."
+msgstr ""
+
+msgid "Could not copy the link"
+msgstr "Kon de link niet kopiëren"
+
+msgid "Delete all playlist posts when the plugin is uninstalled"
+msgstr ""
+
+msgid "Designed playlists"
+msgstr ""
+
+msgid "Detect automatically"
+msgstr "Automatisch detecteren"
+
+msgid "Each site has one radio station. A metadata hub POSTs each played track to this station's REST endpoint; the plugin finds or creates today's playlist for the current show and appends the track to it."
+msgstr ""
+
+msgid "Edit artist"
+msgstr ""
+
+msgid "Enable station"
+msgstr ""
+
+msgid "Every artist heard on this station, from A to Z, with play counts and links to the broadcasts they appeared in."
+msgstr "Iedere artiest die op de zender te horen was, van A tot Z, met draaibeurten en links naar de uitzendingen."
+
+msgid "Fallback image"
+msgstr ""
+
+msgid "Find a track or an artist"
+msgstr "Zoek een nummer of artiest"
+
+msgid "First month"
+msgstr "Eerste maand"
+
+msgid "First played"
+msgstr "Eerst gedraaid"
+
+msgid "Flag artists and add a photo, biography and links on the %s screen."
+msgstr "Markeer artiesten en voeg een foto, biografie en links toe op het scherm %s."
+
+msgid "For “%s”"
+msgstr "Voor “%s”"
+
+msgid "General"
+msgstr ""
+
+msgid "Highlight this artist as local talent"
+msgstr ""
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Hour"
+msgstr "Uur"
+
+msgid "hour"
+msgstr "uur"
+
+msgid "Hour %1$s, %2$s"
+msgstr "Uur %1$s, %2$s"
+
+msgid "Hub page"
+msgstr ""
+
+msgid "Image used for the playlist featured image when the current show has no avatar. Choose it from the media library; the attachment ID is stored."
+msgstr ""
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "Jump to an hour"
+msgstr "Spring naar een uur"
+
+msgid "Last played"
+msgstr "Laatst gedraaid"
+
+msgid "Last rebuild"
+msgstr ""
+
+msgid "Latest month"
+msgstr "Nieuwste maand"
+
+msgid "Leave blank to auto-detect:"
+msgstr ""
+
+msgid "Legacy hub paths"
+msgstr ""
+
+msgid "Length"
+msgstr "Duur"
+
+msgid "Letters"
+msgstr "Letters"
+
+msgid "Link copied"
+msgstr "Link gekopieerd"
+
+msgid "Listen and follow"
+msgstr "Luisteren en volgen"
+
+msgid "Listen back"
+msgstr "Terugluisteren"
+
+msgid "Listen-back page"
+msgstr ""
+
+msgid "Local"
+msgstr "Lokaal"
+
+msgid "Local artist"
+msgstr "Lokale artiest"
+
+msgid "Local artists"
+msgstr ""
+
+msgid "Local artists are highlighted and can appear in the local-artists section on the hub and the artist index."
+msgstr ""
+
+msgid "Metadata API endpoint"
+msgstr ""
+
+msgid "Metadata hub configuration"
+msgstr ""
+
+msgid "Months"
+msgstr "Maanden"
+
+msgid "Most played this week"
+msgstr "Meest gedraaid deze week"
+
+msgid "never"
+msgstr "nooit"
+
+msgid "New artist name"
+msgstr ""
+
+msgid "Newer broadcasts"
+msgstr "Nieuwere uitzendingen"
+
+msgid "Next broadcast"
+msgstr "Volgende uitzending"
+
+msgid "No artist or track found"
+msgstr "Geen artiest of nummer gevonden"
+
+msgid "No artists"
+msgstr ""
+
+msgid "No artists found."
+msgstr ""
+
+msgid "No current show found at this time."
+msgstr ""
+
+msgid "No key configured yet — tracks will be rejected until one is saved."
+msgstr ""
+
+msgid "No playlists yet"
+msgstr "Nog geen afspeellijsten"
+
+msgid "No tracks in this broadcast yet"
+msgstr "Nog geen nummers in deze uitzending"
+
+msgid "No tracks indexed yet"
+msgstr "Nog geen nummers geïndexeerd"
+
+msgid "Now"
+msgstr "Nu"
+
+msgid "Older broadcasts"
+msgstr "Oudere uitzendingen"
+
+msgid "On this station"
+msgstr "Op deze zender"
+
+msgid "Only enable this on a site whose playlist URLs currently include a front path such as /nieuws/playlist/. Existing URLs receive a permanent 301 to the cleaned URL. Turn it off if the site uses clean playlist URLs already."
+msgstr ""
+
+msgid "Open the broadcast archive"
+msgstr "Open het audioarchief"
+
+msgid "Pagination"
+msgstr "Paginering"
+
+msgid "Paste this output block into the metadata hub's config.json (adapt name, inputs and delay to your hub). The bearerToken must be the same value as the API key configured above; it is never displayed here."
+msgstr ""
+
+msgid "Photo"
+msgstr "Foto"
+
+msgid "Played tracks"
+msgstr "Afgespeelde nummers"
+
+msgid "Played tracks %s"
+msgstr "Afgespeelde nummers %s"
+
+msgid "Playlist %1$s – %2$s"
+msgstr "Afspellijst %1$s – %2$s"
+
+msgid "Playlist %s"
+msgstr "Afspellijst %s"
+
+msgid "Playlist comment column label"
+msgstr ""
+
+msgid "Playlists"
+msgstr "Afspeellijsten"
+
+msgid "Playlists per artist page"
+msgstr ""
+
+msgid "Playlists with a summary"
+msgstr ""
+
+msgid "Playlists without an artist"
+msgstr ""
+
+msgid "plays"
+msgstr "keer gedraaid"
+
+msgid "Plays"
+msgstr "Keer gedraaid"
+
+msgid "Post author"
+msgstr ""
+
+msgid "Present playlists, months and artists with the plugin's own templates"
+msgstr ""
+
+msgid "Previous and next broadcast"
+msgstr "Vorige en volgende uitzending"
+
+msgid "Previous broadcast"
+msgstr "Vorige uitzending"
+
+msgid "Public presentation"
+msgstr ""
+
+msgid "Published playlists"
+msgstr ""
+
+msgid "Radio Station's playlist entries have a \"Comments\" field, which this plugin uses to store each track's start time. Use this setting to rename that column's header (default \"Start Time\"). Leave empty to keep Radio Station's wording."
+msgstr ""
+
+msgid "Recent broadcasts"
+msgstr "Recente uitzendingen"
+
+msgid "Recently played"
+msgstr "Laatst gedraaid"
+
+msgid "Recorded plays"
+msgstr ""
+
+msgid "Register the station's REST endpoint"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Remove image"
+msgstr "Afbeelding verwijderen"
+
+msgid "Remove the site's front path from playlist permalinks and redirect the old URLs"
+msgstr ""
+
+msgid "REST namespace"
+msgstr ""
+
+msgid "Returns the current show; response shape broadcast.current_show.show.{id,name,slug,avatar_id}."
+msgstr ""
+
+msgid "Search"
+msgstr "Zoeken"
+
+msgid "Search an artist or a track"
+msgstr "Zoek een artiest of een nummer"
+
+msgid "Search artists"
+msgstr ""
+
+msgid "Search results"
+msgstr "Zoekresultaten"
+
+msgid "Search results for “%s”"
+msgstr "Zoekresultaten voor “%s”"
+
+msgid "Search results for “%s”: artists and tracks heard on this station."
+msgstr "Zoekresultaten voor “%s”: artiesten en nummers die op de zender te horen waren."
+
+msgid "Select an author"
+msgstr ""
+
+msgid "Select image"
+msgstr "Afbeelding kiezen"
+
+msgid "Show a local-artists section on the hub and artist index when artists are flagged"
+msgstr ""
+
+msgid "Single artist"
+msgstr ""
+
+msgid "Spotify"
+msgstr "Spotify"
+
+msgid "Station"
+msgstr ""
+
+msgid "Station name"
+msgstr ""
+
+msgid "The API key must be at least 8 characters long. The previous key was kept."
+msgstr ""
+
+msgid "The artist index has not been built yet. Run \"wp wppl rebuild\" on the server (with --url on multisite) to create the artist pages."
+msgstr ""
+
+msgid "The Broadcast Archive page. When this page and the Broadcast Archive plugin are available, a playlist offers a button to play the matching broadcast. Leave on automatic detection when the archive shortcode is on one page."
+msgstr ""
+
+msgid "The first broadcast will appear here as soon as tracks are reported."
+msgstr "De eerste uitzending verschijnt hier zodra er nummers binnenkomen."
+
+msgid "The page containing the [wordpress_playlists] shortcode. Month pages live under it, for example %s."
+msgstr "De pagina met de shortcode [wordpress_playlists]. Maandpagina's staan eronder, bijvoorbeeld %s."
+
+msgid "The path segment of the track endpoint between /wp-json/ and /playlist/track. Set it to the namespace your metadata hub POSTs to."
+msgstr ""
+
+msgid "The Radio Station plugin is not active."
+msgstr ""
+
+msgid "This artist has not been played yet"
+msgstr "Deze artiest is nog niet gedraaid"
+
+msgid "This broadcast could not be played."
+msgstr "Deze uitzending kon niet worden afgespeeld."
+
+msgid "This broadcast is available in the archive."
+msgstr "Deze uitzending staat in het archief."
+
+msgid "This page does not exist"
+msgstr "Deze pagina bestaat niet"
+
+msgid "Time"
+msgstr "Tijd"
+
+msgid "Today, %s"
+msgstr "Vandaag, %s"
+
+msgid "Total plays"
+msgstr "Totaal gedraaid"
+
+msgid "Track duration is shorter than %d minutes and will be skipped."
+msgstr ""
+
+msgid "Track endpoint:"
+msgstr ""
+
+msgid "Track list: %1$s tracks from %2$s on %3$s"
+msgstr "Nummers: %1$s nummers uit %2$s op %3$s"
+
+msgid "Track successfully added to the playlist."
+msgstr ""
+
+msgid "Tracks appear here as soon as the metadata hub reports them."
+msgstr "Nummers verschijnen hier zodra de metadatahub ze doorgeeft."
+
+msgid "Tracks by this artist"
+msgstr "Nummers van deze artiest"
+
+msgid "Tracks played by %s"
+msgstr "Nummers gedraaid door %s"
+
+msgid "Try a shorter search, or browse the artist index."
+msgstr "Probeer een kortere zoekterm of blader door het artiestenoverzicht."
+
+msgid "Turning this off restores the Radio Station playlist content and disables the artist pages, month pages and hub shortcode. Stored artist data is kept."
+msgstr ""
+
+msgid "Uninstall behavior"
+msgstr ""
+
+msgid "unknown"
+msgstr "onbekend"
+
+msgid "Update artist"
+msgstr ""
+
+msgid "Use this image"
+msgstr "Deze afbeelding gebruiken"
+
+msgid "Used for links, the now marker and the local-artist badge. The plugin derives a darker text colour and tints at render time so every pair meets WCAG AA."
+msgstr ""
+
+msgid "Used on the artist page and the local-artists section. Without a photo the artist gets a monogram."
+msgstr ""
+
+msgid "User assigned to created playlist posts."
+msgstr ""
+
+msgid "View playlist"
+msgstr "Bekijk afspeellijst"
+
+msgid "WARNING: playlists are valuable content created by the Radio Station plugin. When enabled, uninstalling this plugin permanently deletes every playlist post - this cannot be undone. It is disabled by default and should stay disabled unless you are certain. Uninstalling only ever removes this plugin's own settings option otherwise."
+msgstr ""
+
+msgid "Website"
+msgstr "Website"
+
+msgid "WordPress Playlists"
+msgstr "WordPress Playlists"
+
+msgid "WordPress Playlists depends on the Radio Station plugin; install and activate it to create playlists."
+msgstr ""
+
+msgid "WordPress Playlists: enter an API key on the settings page before tracks can be accepted."
+msgstr ""
+
+msgid "WordPress Playlists: the artist index has not been built yet. Run \"wp wppl rebuild\" on the server (add --url on multisite) to create the artist pages."
+msgstr ""
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "%s artist"
+msgid_plural "%s artists"
+msgstr[0] "%s artiest"
+msgstr[1] "%s artiesten"
+
+msgid "%s broadcast"
+msgid_plural "%s broadcasts"
+msgstr[0] "%s uitzending"
+msgstr[1] "%s uitzendingen"
+
+msgid "%s play"
+msgid_plural "%s plays"
+msgstr[0] "%s keer gedraaid"
+msgstr[1] "%s keer gedraaid"
+
+msgid "%s result"
+msgid_plural "%s results"
+msgstr[0] "%s resultaat"
+msgstr[1] "%s resultaten"
+
+msgid "%s track"
+msgid_plural "%s tracks"
+msgstr[0] "%s nummer"
+msgstr[1] "%s nummers"
+
+msgid "in %s broadcast"
+msgid_plural "in %s broadcasts"
+msgstr[0] "in %s uitzending"
+msgstr[1] "in %s uitzendingen"

@@ -183,6 +183,8 @@ final class Playlist_Manager {
 		update_post_meta( $playlist_id, 'playlist_show_id', $show_id );
 		update_post_meta( $playlist_id, 'playlist', array() );
 
+		Cache::forget( 'playlist_months' );
+
 		// Featured images are never downloaded - only existing attachment IDs
 		// are used (the show avatar or the station's configured fallback).
 		$featured_image_id = $this->get_featured_image_id( $avatar_id );
@@ -226,6 +228,10 @@ final class Playlist_Manager {
 			Logger::log( $this->station->name(), sprintf( 'Failed to update playlist meta for playlist %d', $playlist_id ) );
 			return false;
 		}
+
+		// Update the derived artist index before touching the post, so the
+		// save_post resync sees an index that already includes this track.
+		Artist_Index::record_track( $playlist_id, $tracks[ $new_key ], $tracks );
 
 		// Touch the post so ordering and feeds stay current.
 		wp_update_post(

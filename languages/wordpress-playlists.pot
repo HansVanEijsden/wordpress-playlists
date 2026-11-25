@@ -1,0 +1,628 @@
+# Copyright (C) 2026 Hans van Eijsden Consultancy
+# This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress Playlists 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/HansVanEijsden/wordpress-playlists/issues\n"
+"POT-Creation-Date: 2026-11-25T00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%1$s has been played %2$s times on this station: %3$s tracks, last heard on %4$s."
+msgstr ""
+
+msgid "%1$s: %2$s plays"
+msgstr ""
+
+msgid "A key is currently configured."
+msgstr ""
+
+msgctxt "navigation link block description"
+msgid "A link to an artist."
+msgstr ""
+
+msgid "A short biography shown on the artist page and in the structured data. Leave empty to omit it."
+msgstr ""
+
+msgid "About %s"
+msgstr ""
+
+msgid "About this artist"
+msgstr ""
+
+msgid "Accent colour"
+msgstr ""
+
+msgid "Accepted via the X-API-Key header, an Authorization: Bearer header, or a ?secret= query parameter (the metadata hub uses a bearer token). Leave blank to keep the current key. The key is never displayed."
+msgstr ""
+
+msgid "Add new artist"
+msgstr ""
+
+msgid "All %1$s broadcasts from %2$s, grouped per day and programme, with every played track."
+msgstr ""
+
+msgid "All %1$s tracks from the broadcast of %3$s on %2$s: %4$s."
+msgstr ""
+
+msgid "All artists"
+msgstr ""
+
+msgid "All artists A–Z"
+msgstr ""
+
+msgid "All months"
+msgstr ""
+
+msgid "All playlists"
+msgstr ""
+
+msgid "All playlists and details"
+msgstr ""
+
+msgid "All playlists for %s"
+msgstr ""
+
+msgid "All playlists for this programme"
+msgstr ""
+
+msgid "API key"
+msgstr ""
+
+msgctxt "taxonomy singular name"
+msgid "Artist"
+msgstr ""
+
+msgid "Artist and track"
+msgstr ""
+
+msgid "Artist card: %s"
+msgstr ""
+
+msgid "Artist index"
+msgstr ""
+
+msgctxt "navigation link block title"
+msgid "Artist Link"
+msgstr ""
+
+msgid "Artist or track title"
+msgstr ""
+
+msgid "Artist URLs"
+msgstr ""
+
+msgid "Artists"
+msgstr ""
+
+msgctxt "taxonomy general name"
+msgid "Artists"
+msgstr ""
+
+msgid "Artists from the region"
+msgstr ""
+
+msgid "Artists list"
+msgstr ""
+
+msgid "Artists list navigation"
+msgstr ""
+
+msgid "Artists starting with %s"
+msgstr ""
+
+msgid "Artists starting with %s, with play counts and links to every broadcast."
+msgstr ""
+
+msgid "Artists – everyone heard on this station"
+msgstr ""
+
+msgid "Back to all playlists"
+msgstr ""
+
+msgid "Back to artists"
+msgstr ""
+
+msgid "Biography"
+msgstr ""
+
+msgid "Both artist and title are required."
+msgstr ""
+
+msgid "Breadcrumb"
+msgstr ""
+
+msgid "Broadcasts %1$s–%2$s of %3$s"
+msgstr ""
+
+msgid "Broadcasts from %s"
+msgstr ""
+
+msgid "Browse all artists"
+msgstr ""
+
+msgid "Browse by first letter"
+msgstr ""
+
+msgid "Browse by month"
+msgstr ""
+
+msgid "Changing a base flushes the rewrite rules. Add a redirect from the old path at your proxy if the old URLs were indexed."
+msgstr ""
+
+msgid "Choose an image, or leave empty for a monogram."
+msgstr ""
+
+msgid "Clean playlist URLs"
+msgstr ""
+
+msgid "Comma-separated old hub paths that should permanently redirect to the hub, for example a previous page slug. Leave empty when the hub URL never changed."
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Copy link"
+msgstr ""
+
+msgid "Could not add the track to the playlist."
+msgstr ""
+
+msgid "Could not copy the link"
+msgstr ""
+
+msgid "Delete all playlist posts when the plugin is uninstalled"
+msgstr ""
+
+msgid "Designed playlists"
+msgstr ""
+
+msgid "Detect automatically"
+msgstr ""
+
+msgid "Each site has one radio station. A metadata hub POSTs each played track to this station's REST endpoint; the plugin finds or creates today's playlist for the current show and appends the track to it."
+msgstr ""
+
+msgid "Edit artist"
+msgstr ""
+
+msgid "Enable station"
+msgstr ""
+
+msgid "Every artist heard on this station, from A to Z, with play counts and links to the broadcasts they appeared in."
+msgstr ""
+
+msgid "Fallback image"
+msgstr ""
+
+msgid "Find a track or an artist"
+msgstr ""
+
+msgid "First month"
+msgstr ""
+
+msgid "First played"
+msgstr ""
+
+msgid "Flag artists and add a photo, biography and links on the %s screen."
+msgstr ""
+
+msgid "For “%s”"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Highlight this artist as local talent"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Hour"
+msgstr ""
+
+msgid "hour"
+msgstr ""
+
+msgid "Hour %1$s, %2$s"
+msgstr ""
+
+msgid "Hub page"
+msgstr ""
+
+msgid "Image used for the playlist featured image when the current show has no avatar. Choose it from the media library; the attachment ID is stored."
+msgstr ""
+
+msgid "Instagram"
+msgstr ""
+
+msgid "Jump to an hour"
+msgstr ""
+
+msgid "Last played"
+msgstr ""
+
+msgid "Last rebuild"
+msgstr ""
+
+msgid "Latest month"
+msgstr ""
+
+msgid "Leave blank to auto-detect:"
+msgstr ""
+
+msgid "Legacy hub paths"
+msgstr ""
+
+msgid "Length"
+msgstr ""
+
+msgid "Letters"
+msgstr ""
+
+msgid "Link copied"
+msgstr ""
+
+msgid "Listen and follow"
+msgstr ""
+
+msgid "Listen back"
+msgstr ""
+
+msgid "Listen-back page"
+msgstr ""
+
+msgid "Local"
+msgstr ""
+
+msgid "Local artist"
+msgstr ""
+
+msgid "Local artists"
+msgstr ""
+
+msgid "Local artists are highlighted and can appear in the local-artists section on the hub and the artist index."
+msgstr ""
+
+msgid "Metadata API endpoint"
+msgstr ""
+
+msgid "Metadata hub configuration"
+msgstr ""
+
+msgid "Months"
+msgstr ""
+
+msgid "Most played this week"
+msgstr ""
+
+msgid "never"
+msgstr ""
+
+msgid "New artist name"
+msgstr ""
+
+msgid "Newer broadcasts"
+msgstr ""
+
+msgid "Next broadcast"
+msgstr ""
+
+msgid "No artist or track found"
+msgstr ""
+
+msgid "No artists"
+msgstr ""
+
+msgid "No artists found."
+msgstr ""
+
+msgid "No current show found at this time."
+msgstr ""
+
+msgid "No key configured yet — tracks will be rejected until one is saved."
+msgstr ""
+
+msgid "No playlists yet"
+msgstr ""
+
+msgid "No tracks in this broadcast yet"
+msgstr ""
+
+msgid "No tracks indexed yet"
+msgstr ""
+
+msgid "Now"
+msgstr ""
+
+msgid "Older broadcasts"
+msgstr ""
+
+msgid "On this station"
+msgstr ""
+
+msgid "Only enable this on a site whose playlist URLs currently include a front path such as /nieuws/playlist/. Existing URLs receive a permanent 301 to the cleaned URL. Turn it off if the site uses clean playlist URLs already."
+msgstr ""
+
+msgid "Open the broadcast archive"
+msgstr ""
+
+msgid "Pagination"
+msgstr ""
+
+msgid "Paste this output block into the metadata hub's config.json (adapt name, inputs and delay to your hub). The bearerToken must be the same value as the API key configured above; it is never displayed here."
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "Played tracks"
+msgstr ""
+
+msgid "Played tracks %s"
+msgstr ""
+
+msgid "Playlist %1$s – %2$s"
+msgstr ""
+
+msgid "Playlist %s"
+msgstr ""
+
+msgid "Playlist comment column label"
+msgstr ""
+
+msgid "Playlists"
+msgstr ""
+
+msgid "Playlists per artist page"
+msgstr ""
+
+msgid "Playlists with a summary"
+msgstr ""
+
+msgid "Playlists without an artist"
+msgstr ""
+
+msgid "plays"
+msgstr ""
+
+msgid "Plays"
+msgstr ""
+
+msgid "Post author"
+msgstr ""
+
+msgid "Present playlists, months and artists with the plugin's own templates"
+msgstr ""
+
+msgid "Previous and next broadcast"
+msgstr ""
+
+msgid "Previous broadcast"
+msgstr ""
+
+msgid "Public presentation"
+msgstr ""
+
+msgid "Published playlists"
+msgstr ""
+
+msgid "Radio Station's playlist entries have a \"Comments\" field, which this plugin uses to store each track's start time. Use this setting to rename that column's header (default \"Start Time\"). Leave empty to keep Radio Station's wording."
+msgstr ""
+
+msgid "Recent broadcasts"
+msgstr ""
+
+msgid "Recently played"
+msgstr ""
+
+msgid "Recorded plays"
+msgstr ""
+
+msgid "Register the station's REST endpoint"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Remove image"
+msgstr ""
+
+msgid "Remove the site's front path from playlist permalinks and redirect the old URLs"
+msgstr ""
+
+msgid "REST namespace"
+msgstr ""
+
+msgid "Returns the current show; response shape broadcast.current_show.show.{id,name,slug,avatar_id}."
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search an artist or a track"
+msgstr ""
+
+msgid "Search artists"
+msgstr ""
+
+msgid "Search results"
+msgstr ""
+
+msgid "Search results for “%s”"
+msgstr ""
+
+msgid "Search results for “%s”: artists and tracks heard on this station."
+msgstr ""
+
+msgid "Select an author"
+msgstr ""
+
+msgid "Select image"
+msgstr ""
+
+msgid "Show a local-artists section on the hub and artist index when artists are flagged"
+msgstr ""
+
+msgid "Single artist"
+msgstr ""
+
+msgid "Spotify"
+msgstr ""
+
+msgid "Station"
+msgstr ""
+
+msgid "Station name"
+msgstr ""
+
+msgid "The API key must be at least 8 characters long. The previous key was kept."
+msgstr ""
+
+msgid "The artist index has not been built yet. Run \"wp wppl rebuild\" on the server (with --url on multisite) to create the artist pages."
+msgstr ""
+
+msgid "The Broadcast Archive page. When this page and the Broadcast Archive plugin are available, a playlist offers a button to play the matching broadcast. Leave on automatic detection when the archive shortcode is on one page."
+msgstr ""
+
+msgid "The first broadcast will appear here as soon as tracks are reported."
+msgstr ""
+
+msgid "The page containing the [wordpress_playlists] shortcode. Month pages live under it, for example %s."
+msgstr ""
+
+msgid "The path segment of the track endpoint between /wp-json/ and /playlist/track. Set it to the namespace your metadata hub POSTs to."
+msgstr ""
+
+msgid "The Radio Station plugin is not active."
+msgstr ""
+
+msgid "This artist has not been played yet"
+msgstr ""
+
+msgid "This broadcast could not be played."
+msgstr ""
+
+msgid "This broadcast is available in the archive."
+msgstr ""
+
+msgid "This page does not exist"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Today, %s"
+msgstr ""
+
+msgid "Total plays"
+msgstr ""
+
+msgid "Track duration is shorter than %d minutes and will be skipped."
+msgstr ""
+
+msgid "Track endpoint:"
+msgstr ""
+
+msgid "Track list: %1$s tracks from %2$s on %3$s"
+msgstr ""
+
+msgid "Track successfully added to the playlist."
+msgstr ""
+
+msgid "Tracks appear here as soon as the metadata hub reports them."
+msgstr ""
+
+msgid "Tracks by this artist"
+msgstr ""
+
+msgid "Tracks played by %s"
+msgstr ""
+
+msgid "Try a shorter search, or browse the artist index."
+msgstr ""
+
+msgid "Turning this off restores the Radio Station playlist content and disables the artist pages, month pages and hub shortcode. Stored artist data is kept."
+msgstr ""
+
+msgid "Uninstall behavior"
+msgstr ""
+
+msgid "unknown"
+msgstr ""
+
+msgid "Update artist"
+msgstr ""
+
+msgid "Use this image"
+msgstr ""
+
+msgid "Used for links, the now marker and the local-artist badge. The plugin derives a darker text colour and tints at render time so every pair meets WCAG AA."
+msgstr ""
+
+msgid "Used on the artist page and the local-artists section. Without a photo the artist gets a monogram."
+msgstr ""
+
+msgid "User assigned to created playlist posts."
+msgstr ""
+
+msgid "View playlist"
+msgstr ""
+
+msgid "WARNING: playlists are valuable content created by the Radio Station plugin. When enabled, uninstalling this plugin permanently deletes every playlist post - this cannot be undone. It is disabled by default and should stay disabled unless you are certain. Uninstalling only ever removes this plugin's own settings option otherwise."
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "WordPress Playlists"
+msgstr ""
+
+msgid "WordPress Playlists depends on the Radio Station plugin; install and activate it to create playlists."
+msgstr ""
+
+msgid "WordPress Playlists: enter an API key on the settings page before tracks can be accepted."
+msgstr ""
+
+msgid "WordPress Playlists: the artist index has not been built yet. Run \"wp wppl rebuild\" on the server (add --url on multisite) to create the artist pages."
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "%s artist"
+msgid_plural "%s artists"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s broadcast"
+msgid_plural "%s broadcasts"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s play"
+msgid_plural "%s plays"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s result"
+msgid_plural "%s results"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s track"
+msgid_plural "%s tracks"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "in %s broadcast"
+msgid_plural "in %s broadcasts"
+msgstr[0] ""
+msgstr[1] ""

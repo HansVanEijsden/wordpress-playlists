@@ -24,6 +24,18 @@ if ( ! defined( 'WORDPRESS_PLAYLISTS_OPTION' ) ) {
  */
 function wordpress_playlists_delete_option() {
 	delete_option( WORDPRESS_PLAYLISTS_OPTION );
+
+	// Derived state only; artist terms, biographies, photos and playlists stay.
+	foreach ( array(
+		'wordpress_playlists_version',
+		'wordpress_playlists_flush_rewrite',
+		'wordpress_playlists_hub_page',
+		'wordpress_playlists_archive_page',
+		'wordpress_playlists_cache_version',
+		'wordpress_playlists_index_built',
+	) as $option ) {
+		delete_option( $option );
+	}
 }
 
 /**
