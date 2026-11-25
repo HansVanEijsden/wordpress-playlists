@@ -366,10 +366,10 @@ msgid "Played tracks %s"
 msgstr "Afgespeelde nummers %s"
 
 msgid "Playlist %1$s – %2$s"
-msgstr "Afspellijst %1$s – %2$s"
+msgstr "Afspeellijst %1$s – %2$s"
 
 msgid "Playlist %s"
-msgstr ""
+msgstr "Afspeellijst %s"
 
 msgid "Playlist comment column label"
 msgstr ""
