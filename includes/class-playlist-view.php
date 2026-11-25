@@ -68,7 +68,10 @@ final class Playlist_View {
 			return (string) $content;
 		}
 
-		if ( ! is_singular( 'playlist' ) || (int) get_queried_object_id() !== $post_id || ! is_main_query() ) {
+		// The queried object is the authoritative singular target. Some page
+		// builders (Newspaper Cloud Templates among them) call the_content()
+		// outside the main loop, so is_main_query() is not a safe condition.
+		if ( ! is_singular( 'playlist' ) || (int) get_queried_object_id() !== $post_id ) {
 			return (string) $content;
 		}
 
