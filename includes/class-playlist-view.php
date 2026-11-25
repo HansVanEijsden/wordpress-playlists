@@ -75,6 +75,11 @@ final class Playlist_View {
 			return (string) $content;
 		}
 
+		// Do not let SEO/head-time content filters consume the one render.
+		if ( ! did_action( 'wp_head' ) ) {
+			return (string) $content;
+		}
+
 		if ( isset( self::$rendered[ $post_id ] ) ) {
 			return (string) $content;
 		}
