@@ -211,7 +211,7 @@ final class Context {
 			return '';
 		}
 
-		return self::hub_url() . sprintf( '%04d/%02d/', $year, $month );
+		return trailingslashit( self::hub_url() ) . sprintf( '%04d/%02d/', $year, $month );
 	}
 
 	/**
