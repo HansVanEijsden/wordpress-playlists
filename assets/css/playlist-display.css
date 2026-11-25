@@ -118,6 +118,20 @@
 
 .wppl-main {
 	display: block;
+	max-width: 1080px;
+	margin: 28px auto;
+	background: var(--wppl-surface);
+	border: 1px solid var(--wppl-line);
+	border-radius: 12px;
+	overflow: clip;
+}
+
+@media (max-width: 760px) {
+	.wppl-main {
+		margin: 0;
+		border: 0;
+		border-radius: 0;
+	}
 }
 
 .wppl-page {
