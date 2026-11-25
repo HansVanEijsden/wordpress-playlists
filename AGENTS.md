@@ -70,7 +70,7 @@ The `playlist` post meta written by the ingest is the **only** source of truth. 
 
 ### Public presentation invariants
 
-- Playlist pages keep the host theme's shell (title, breadcrumb, sidebar, advertising). Only `the_content` is replaced, and only for the main singular playlist in the main loop.
+- Playlist pages keep the host theme's shell (title, breadcrumb, sidebar, advertising). Only `the_content` is replaced, and only for the queried singular playlist; page builders may call it outside the main loop, so the queried object — not `is_main_query()` — is the guard.
 - One canonical page per artist; tracks are sections on it, not separate thin pages. No numeric pagination anywhere: the hub → month → playlist hierarchy carries the archive.
 - The presentation is station-agnostic: inherited typeface and text colour, neutral surfaces, one station accent. Accent companions are derived with `Palette` and must stay AA on white and on the 9 % tint.
 - All public HTML is server-rendered. JavaScript may only enhance (now marker, copy link, shared player); the page must be complete without it.
