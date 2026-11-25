@@ -118,12 +118,14 @@
 
 .wppl-main {
 	display: block;
+	width: 100%;
 	max-width: 1080px;
 	margin: 28px auto;
 	background: var(--wppl-surface);
 	border: 1px solid var(--wppl-line);
 	border-radius: 12px;
 	overflow: clip;
+	box-sizing: border-box;
 }
 
 @media (max-width: 760px) {
