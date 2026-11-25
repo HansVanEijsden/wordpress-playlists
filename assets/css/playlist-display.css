@@ -121,8 +121,8 @@
 	width: 100%;
 	max-width: 1080px;
 	margin: 28px auto;
-	background: var(--wppl-surface);
-	border: 1px solid var(--wppl-line);
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
 	border-radius: 12px;
 	overflow: clip;
 	box-sizing: border-box;
