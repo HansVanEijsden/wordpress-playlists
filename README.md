@@ -131,7 +131,7 @@ wp wppl status              # counts and the last rebuild
 wp wppl recount douwe-bob   # recompute one artist from its playlists
 ```
 
-On multisite, pass `--url=https://example.com` (or `--url` of the subsite). Run the rebuild in `tmux`/`screen`; a site with a few thousand playlists takes a few minutes.
+On multisite, pass `--url=https://example.com` (or `--url` of the subsite). Run the rebuild in `tmux`/`screen`; a site with a few thousand playlists takes a few minutes. On a fresh index a dry run reports 0 artists and 0 plays because its read-only term lookup cannot create the terms yet; the write run builds them.
 
 ### Caching
 
