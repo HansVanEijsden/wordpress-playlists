@@ -262,6 +262,10 @@
 	transition: text-decoration-color 0.16s var(--wppl-ease);
 }
 
+.wppl a.wppl-textlink {
+	color: var(--wppl-accent-ink, #b3041e) !important;
+}
+
 .wppl-textlink:hover {
 	text-decoration-color: currentColor;
 }
@@ -489,6 +493,22 @@
 	table-layout: auto;
 }
 
+.wppl .wppl-sheet-table th,
+.wppl .wppl-sheet-table td {
+	border-left: 0 !important;
+	border-right: 0 !important;
+	border-top: 0 !important;
+}
+
+.wppl .wppl-sheet-table thead th {
+	color: var(--wppl-ink-muted) !important;
+	border-bottom: 1px solid var(--wppl-line-strong) !important;
+}
+
+.wppl .wppl-sheet-table tbody tr {
+	border-bottom: 1px solid var(--wppl-line) !important;
+}
+
 .wppl-sheet-table thead th {
 	padding: 10px 8px;
 	border-bottom: 1px solid var(--wppl-line-strong);
@@ -548,17 +568,17 @@
 }
 
 a.wppl-artist {
-	color: var(--wppl-ink);
+	color: var(--wppl-ink) !important;
 	text-decoration: underline;
-	text-decoration-color: var(--wppl-accent);
+	text-decoration-color: var(--wppl-accent) !important;
 	text-underline-offset: 3px;
 	text-decoration-thickness: 1px;
 	transition: color 0.16s var(--wppl-ease), text-decoration-color 0.16s var(--wppl-ease);
 }
 
 a.wppl-artist:hover {
-	color: var(--wppl-accent-ink, #b3041e);
-	text-decoration-color: currentColor;
+	color: var(--wppl-accent-ink, #b3041e) !important;
+	text-decoration-color: currentColor !important;
 }
 
 .wppl-sep--track {
