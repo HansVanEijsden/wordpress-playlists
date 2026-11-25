@@ -406,7 +406,7 @@ final class SEO {
 	public function filter_breadcrumbs( $crumbs ): array {
 		$context = self::context();
 
-		if ( null === $context || 'playlist' === $context['type'] ) {
+		if ( null === $context ) {
 			return (array) $crumbs;
 		}
 
@@ -429,6 +429,10 @@ final class SEO {
 		}
 
 		switch ( $context['type'] ) {
+			case 'playlist':
+				$crumbs[] = array( 'text' => (string) $context['post']->post_title );
+				break;
+
 			case 'artist':
 				$crumbs[] = array( 'text' => (string) $context['term']->name );
 				break;

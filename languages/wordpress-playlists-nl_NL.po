@@ -369,7 +369,7 @@ msgid "Playlist %1$s – %2$s"
 msgstr "Afspellijst %1$s – %2$s"
 
 msgid "Playlist %s"
-msgstr "Afspellijst %s"
+msgstr ""
 
 msgid "Playlist comment column label"
 msgstr ""
