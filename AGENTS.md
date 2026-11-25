@@ -130,10 +130,10 @@ The `playlist` post meta written by the ingest is the **only** source of truth. 
 ## Deployment (both sites)
 
 1. `git pull` in the plugin directory as the site owner.
-2. Run `wp wppl rebuild --dry-run`, then `wp wppl rebuild` once (in `tmux`; add `--url` on multisite). Check `wp wppl status`.
+2. Restart PHP-FPM / the PHP container after the pull when opcache is enabled; otherwise the old classes can keep serving. Run `wp wppl rebuild --dry-run`, then `wp wppl rebuild` once (in `tmux`; add `--url` on multisite). Check `wp wppl status`.
 3. Confirm the display settings (accent, hub page, artist bases) and, on a site whose playlist URLs contained a front path, enable **Clean playlist URLs**. Add any previous hub path (for example `/afspeellijsten-radio`) under **Legacy hub paths**. Set **Listen-back page** explicitly when the archive page uses a legacy shortcode instead of `[broadcast_archive]`.
-4. Replace the hub page's `[playlists-archive]` shortcode with `[wordpress_playlists]` (keep a backup of the page content); keep the existing editorial intro.
-5. Flush the site's full-page cache and verify the public pages, the redirects and the sitemap in a browser.
+4. Replace the hub page's Radio Station archive — either the `[playlists-archive]` shortcode or the Gutenberg `radio-station/archive` block — with a shortcode block containing `[wordpress_playlists]` (or `[wordpress_playlists week="3"]` for a compact two-day recent list). Keep a backup of the page content and the editorial intro.
+5. Flush the full-page cache (nginx-helper / Redis purger on these hosts) and clear the short-lived nginx sitemap cache if the sitemap changed; verify the public pages, the redirects and the sitemap in a browser.
 
 ## Pitfalls
 
