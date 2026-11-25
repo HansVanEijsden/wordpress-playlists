@@ -327,6 +327,17 @@
 	color: #f4f5f7;
 }
 
+.wppl .wppl-plate-title a,
+.wppl .wppl-plate-link,
+.wppl .wppl-plate-link:visited {
+	color: #f4f5f7 !important;
+}
+
+.wppl .wppl-plate-title a:hover,
+.wppl .wppl-plate-link:hover {
+	color: #ffffff !important;
+}
+
 .wppl .wppl-plate-meta {
 	color: rgba(244, 245, 247, 0.72);
 }
