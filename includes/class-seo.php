@@ -31,7 +31,7 @@ final class SEO {
 		add_filter( 'wpseo_robots', array( $this, 'filter_robots' ) );
 		add_filter( 'wpseo_opengraph_title', array( $this, 'filter_og_title' ) );
 		add_filter( 'wpseo_opengraph_description', array( $this, 'filter_description' ) );
-		add_filter( 'wpseo_breadcrumb_links', array( $this, 'filter_breadcrumbs' ) );
+		add_filter( 'wpseo_breadcrumb_links', array( $this, 'filter_breadcrumbs' ), 99 );
 		add_filter( 'wpseo_schema_graph', array( $this, 'filter_schema' ), 10, 2 );
 		add_filter( 'wpseo_sitemap_index_links', array( $this, 'filter_sitemap_index' ) );
 		add_filter( 'wpseo_sitemap_exclude_taxonomy', array( $this, 'filter_sitemap_taxonomy' ), 10, 2 );
