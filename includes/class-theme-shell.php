@@ -20,7 +20,7 @@ final class Theme_Shell {
 	 * Register the body-class correction for GeneratePress.
 	 */
 	public static function register(): void {
-		add_filter( 'body_class', array( self::class, 'body_class' ) );
+		add_filter( 'body_class', array( self::class, 'body_class' ), 99 );
 	}
 
 	/**
