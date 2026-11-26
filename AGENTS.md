@@ -50,6 +50,7 @@ No station name, logo or domain may appear anywhere in the repository: no header
 | `tools/make-pot.py` | Regenerates the translation template. |
 | `tests/` | Dependency-free renderer/logic tests; also a class-load smoke test. |
 | `preview/` | Development-only preview harness with realistic fixtures and WordPress stubs. |
+| `docs/ARTIST-EDITORIAL.md` | Editorial workflow for artist photo, biography, links and the local flag. |
 | `PRODUCT.md`, `DESIGN.md`, `.impeccable/` | Product truth, the design system and the surface brief. |
 | `uninstall.php`, `readme.txt`, `README.md`, `LICENSE`, `.editorconfig`, `.github/workflows/ci.yml` | Housekeeping / distribution / CI. |
 

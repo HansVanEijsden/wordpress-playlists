@@ -178,6 +178,13 @@ The pages are fully server-rendered and contain no nonce or per-visitor state. N
 6. The artist index records the play, the playlist summary and the artist's track summary, and invalidates the display caches.
 7. The public views read the playlist meta (single playlist) or the derived summaries (hub, month, artist pages).
 
+## Artist information
+
+Photo, biography, links and the local flag are edited on the artist taxonomy
+screen; see [docs/ARTIST-EDITORIAL.md](docs/ARTIST-EDITORIAL.md) for the
+workflow, cache behaviour and editorial rules. Play counts and tracks stay
+derived from playlist meta and are never edited by hand.
+
 ## Development
 
 ```sh

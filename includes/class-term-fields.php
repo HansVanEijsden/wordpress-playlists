@@ -179,13 +179,26 @@ final class Term_Fields {
 		$local = ! empty( $_POST['wppl_artist_local'] );
 		update_term_meta( $term_id, Taxonomy::META_LOCAL, $local ? 1 : 0 );
 
+		Cache::bump();
 		Cache::forget( 'artist_letters' );
 
-		$url = Context::artist_url( $term_id );
+		$urls   = array();
+		$artist = Context::artist_url( $term_id );
+		$term   = get_term( $term_id, Taxonomy::NAME );
 
-		if ( '' !== $url ) {
-			Cache::purge_urls( array( $url ) );
+		if ( '' !== $artist ) {
+			$urls[] = $artist;
 		}
+
+		$urls[] = Context::artists_index_url();
+		$urls[] = Context::hub_url();
+
+		if ( $term instanceof \WP_Term ) {
+			$letter = Context::letter_for( (string) $term->name );
+			$urls[] = Context::artists_index_url( $letter );
+		}
+
+		Cache::purge_urls( array_values( array_unique( array_filter( $urls ) ) ) );
 	}
 
 	/**
