@@ -96,7 +96,7 @@ final class Theme_Shell {
 		$html  = '<div id="primary" class="content-area"><main id="main" class="site-main">' . $main . '</main></div>';
 
 		if ( '' !== $rail ) {
-			$html .= '<div id="secondary" class="widget-area">' . $rail . '</div>';
+			$html .= '<div id="right-sidebar" class="widget-area sidebar is-right-sidebar">' . $rail . '</div>';
 		}
 
 		return $html;
