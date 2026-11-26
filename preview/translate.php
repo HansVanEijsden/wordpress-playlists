@@ -11,6 +11,7 @@ $preview_translations = array(
 	'Artists' => 'Artiesten',
 	'Artist' => 'Artiest',
 	'Artist information and sidebar' => 'Artiestinformatie en zijbalk',
+	'Sidebar' => 'Zijbalk',
 	'Playlists' => 'Afspeellijsten',
 	'Playlist' => 'Afspeellijst',
 	'Home' => 'Home',

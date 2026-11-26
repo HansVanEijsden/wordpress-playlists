@@ -467,6 +467,9 @@ msgstr "Afbeelding kiezen"
 msgid "Show a local-artists section on the hub and artist index when artists are flagged"
 msgstr ""
 
+msgid "Sidebar"
+msgstr "Zijbalk"
+
 msgid "Single artist"
 msgstr ""
 

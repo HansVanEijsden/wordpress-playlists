@@ -19,6 +19,10 @@ ROOT = Path(__file__).resolve().parent.parent
 INCLUDES = ROOT / "includes"
 OUT = ROOT / "languages" / "wordpress-playlists.pot"
 
+TEMPLATE_STRINGS = [
+    "Sidebar",
+]
+
 PLURALS = [
     ("%s track", "%s tracks"),
     ("%s broadcast", "%s broadcasts"),
@@ -53,6 +57,9 @@ def main() -> None:
             text = unescape(match.group("text"))
             context = unescape(match.group("context") or "") if match.group("fn") == "_x" else ""
             singles[(context, text)] = None
+
+    for text in TEMPLATE_STRINGS:
+        singles[("", text)] = None
 
     for singular, plural in PLURALS:
         plurals[(singular, plural)] = None

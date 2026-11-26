@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 ?>
-<main id="wppl-primary" class="wppl-main wppl-main--artist">
+<main id="wppl-primary" class="wppl-main wppl-main--rail">
 	<?php ( new \WordPressPlaylists\Artist_View() )->render_current_archive(); ?>
 </main>
 <?php
