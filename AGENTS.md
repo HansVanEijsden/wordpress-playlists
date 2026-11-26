@@ -29,6 +29,7 @@ No station name, logo or domain may appear anywhere in the repository: no header
 | `includes/class-playlist-model.php` | The small playlist card model used by hub and month pages. |
 | `includes/class-cache.php` | Cache versions, snapshots and full-page cache purging. |
 | `includes/class-playlist-view.php` | Replaces Radio Station's playlist article content with the airplay sheet. |
+| `includes/class-theme-shell.php` | Wraps the standalone artist routes in the Newspaper/GeneratePress content container and sidebar; falls back to the plugin's own surface. |
 | `includes/class-hub-view.php` | The `[wordpress_playlists]` hub. |
 | `includes/class-month-view.php` | Month archive pages. |
 | `includes/class-artist-view.php` | Artist pages, A–Z index, letter pages, search results and the embeddable card. |
