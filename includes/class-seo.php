@@ -34,6 +34,7 @@ final class SEO {
 		add_filter( 'wpseo_opengraph_desc', array( $this, 'filter_description' ) );
 		add_filter( 'wpseo_twitter_description', array( $this, 'filter_description' ) );
 		add_filter( 'wpseo_opengraph_image', array( $this, 'filter_og_image' ) );
+		add_filter( 'wpseo_add_opengraph_images', array( $this, 'add_og_image' ) );
 		add_filter( 'wpseo_twitter_image', array( $this, 'filter_og_image' ) );
 		add_filter( 'wpseo_breadcrumb_links', array( $this, 'filter_breadcrumbs' ), 99 );
 		add_filter( 'wpseo_schema_graph', array( $this, 'filter_schema' ), 10, 2 );
@@ -352,18 +353,55 @@ final class SEO {
 			return (string) $image;
 		}
 
-		$term = $context['term'];
+		$url = $this->artist_og_image( $context['term'] );
 
+		return '' !== $url ? $url : (string) $image;
+	}
+
+	/**
+	 * Add the artist image to Yoast's Open Graph image container.
+	 *
+	 * Yoast 28 builds the OG image from the indexable first; the legacy
+	 * `wpseo_opengraph_image` filter is not enough on every taxonomy archive.
+	 * This filter adds the artist image to the container directly. It runs
+	 * before the indexable image, so an editor's explicit Yoast image still
+	 * wins through the usual path.
+	 *
+	 * @param mixed $container Yoast Open Graph image container.
+	 * @return mixed
+	 */
+	public function add_og_image( $container ) {
+		$context = self::context();
+
+		if ( null === $context || 'artist' !== $context['type'] ) {
+			return $container;
+		}
+
+		$url = $this->artist_og_image( $context['term'] );
+
+		if ( '' !== $url && is_object( $container ) && method_exists( $container, 'add_image_by_url' ) ) {
+			$container->add_image_by_url( $url );
+		}
+
+		return $container;
+	}
+
+	/**
+	 * Editorial artist image URL, unless an editor set a Yoast social image.
+	 *
+	 * @param \WP_Term $term Artist term.
+	 */
+	private function artist_og_image( \WP_Term $term ): string {
 		foreach ( array( 'wpseo_opengraph-image-id', 'wpseo_opengraph-image' ) as $key ) {
 			if ( '' !== trim( (string) get_term_meta( $term->term_id, $key, true ) ) ) {
-				return (string) $image;
+				return '';
 			}
 		}
 
 		$id  = (int) get_term_meta( $term->term_id, Taxonomy::META_IMAGE, true );
 		$url = $id ? (string) wp_get_attachment_image_url( $id, 'large' ) : '';
 
-		return '' !== $url ? $url : (string) $image;
+		return $url;
 	}
 
 	/**
