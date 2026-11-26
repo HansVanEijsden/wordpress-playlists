@@ -220,6 +220,15 @@ final class Artist_View {
 	 * @param array $data Artist model.
 	 */
 	public function render_archive( array $data ): string {
+		return '<div class="wppl wppl-page wppl-artist-page"><div class="wppl-artist-layout"><div class="wppl-artist-main">' . $this->render_archive_main( $data ) . '</div><aside class="wppl-artist-rail">' . $this->render_archive_rail( $data ) . '</aside></div></div>';
+	}
+
+	/**
+	 * Main artist content: breadcrumb, hero, tracks and broadcast list.
+	 *
+	 * @param array<string,mixed> $data Artist model.
+	 */
+	public function render_archive_main( array $data ): string {
 		$crumbs = array(
 			array(
 				'label' => __( 'Home', 'wordpress-playlists' ),
@@ -238,10 +247,7 @@ final class Artist_View {
 			),
 		);
 
-		$html  = '<div class="wppl wppl-page wppl-artist-page">';
-		$html .= Components::breadcrumb( $crumbs );
-		$html .= '<div class="wppl-artist-layout">';
-		$html .= '<div class="wppl-artist-main">';
+		$html  = Components::breadcrumb( $crumbs );
 		$html .= '<header class="wppl-artist-hero">';
 		$html .= Components::avatar(
 			array(
@@ -290,9 +296,17 @@ final class Artist_View {
 		$html .= '</div></header>';
 		$html .= $this->render_tracks( $data );
 		$html .= $this->render_plays( $data );
-		$html .= '</div>';
 
-		$html .= '<aside class="wppl-artist-rail" aria-label="' . esc_attr__( 'Artist information and sidebar', 'wordpress-playlists' ) . '">';
+		return $html;
+	}
+
+	/**
+	 * Artist rail: station facts first, then editorial info, then theme widgets.
+	 *
+	 * @param array<string,mixed> $data Artist model.
+	 */
+	public function render_archive_rail( array $data ): string {
+		$html = '<div class="wppl wppl-theme-rail">';
 
 		$html .= '<section class="wppl-rail-card wppl-rail-facts">';
 		$html .= '<h2 class="wppl-subhead">' . esc_html__( 'On this station', 'wordpress-playlists' ) . '</h2>';
@@ -336,13 +350,10 @@ final class Artist_View {
 		$sidebar = Components::theme_sidebar();
 
 		if ( '' !== $sidebar ) {
-			$html .= '<div class="wppl-rail-widgets widget-area">' . $sidebar . '</div>';
+			$html .= '<div class="wppl-rail-widgets">' . $sidebar . '</div>';
 		}
 
-		$html .= '</aside>';
-		$html .= '</div></div>';
-
-		return $html;
+		return $html . '</div>';
 	}
 
 	/**

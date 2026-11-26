@@ -154,6 +154,22 @@
 	padding: 0;
 }
 
+#primary .wppl-page {
+	width: 100%;
+	max-width: none;
+}
+
+.td-ss-main-content .wppl-page {
+	width: 100%;
+	max-width: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.wppl-theme-rail {
+	min-width: 0;
+}
+
 .wppl-rail-aside {
 	min-width: 0;
 }
@@ -1430,11 +1446,13 @@ a.wppl-top-name:hover {
 	width: auto !important;
 	max-width: 100%;
 	margin: 0 !important;
-	padding: 0;
-	background: transparent;
-	border: 0;
-	border-radius: 0;
 	box-sizing: border-box;
+}
+
+.wppl-theme-rail .wppl-rail-widgets:first-child {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: 0;
 }
 
 .wppl-rail-widgets img {

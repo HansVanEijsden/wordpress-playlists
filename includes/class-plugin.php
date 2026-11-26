@@ -41,6 +41,7 @@ final class Plugin {
 
 		new Taxonomy();
 		new Artist_Index();
+		Theme_Shell::register();
 
 		if ( is_admin() ) {
 			new Term_Fields();

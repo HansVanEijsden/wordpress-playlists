@@ -45,6 +45,7 @@ require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-hub-view.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-month-view.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-search.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-artist-view.php';
+require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-theme-shell.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-assets.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-routes.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-seo.php';

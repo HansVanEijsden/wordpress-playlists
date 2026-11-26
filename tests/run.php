@@ -120,6 +120,7 @@ test(
 
 		assert_true( class_exists( 'WordPressPlaylists\\Plugin' ) );
 		assert_true( class_exists( 'WordPressPlaylists\\Artist_Index' ) );
+		assert_true( class_exists( 'WordPressPlaylists\\Theme_Shell' ) );
 	}
 );
 
