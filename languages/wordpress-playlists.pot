@@ -30,9 +30,6 @@ msgstr ""
 msgid "About %s"
 msgstr ""
 
-msgid "About this artist"
-msgstr ""
-
 msgid "Accent colour"
 msgstr ""
 
@@ -83,6 +80,9 @@ msgid "Artist card: %s"
 msgstr ""
 
 msgid "Artist index"
+msgstr ""
+
+msgid "Artist information and sidebar"
 msgstr ""
 
 msgctxt "navigation link block title"

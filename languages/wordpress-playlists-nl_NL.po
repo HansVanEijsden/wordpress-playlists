@@ -29,9 +29,6 @@ msgstr ""
 msgid "About %s"
 msgstr "Over %s"
 
-msgid "About this artist"
-msgstr "Over deze artiest"
-
 msgid "Accent colour"
 msgstr ""
 
@@ -83,6 +80,9 @@ msgstr "Artiestkaart: %s"
 
 msgid "Artist index"
 msgstr "Artiestenoverzicht"
+
+msgid "Artist information and sidebar"
+msgstr "Artiestinformatie en zijbalk"
 
 msgctxt "navigation link block title"
 msgid "Artist Link"
