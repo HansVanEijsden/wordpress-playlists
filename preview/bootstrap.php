@@ -154,6 +154,21 @@ function apply_filters( $hook, $value ) {
 	return $value;
 }
 
+function is_active_sidebar( $id ) {
+	return 'sidebar-1' === $id;
+}
+
+function dynamic_sidebar( $id ) {
+	if ( 'sidebar-1' !== $id ) {
+		return false;
+	}
+
+	echo '<div class="widget"><h2 class="widget-title">Meest gelezen</h2><ul><li><a href="#">Van strandromance tot diamanten huwelijk in Zwolle</a></li><li><a href="#">Overleden persoon aangetroffen in auto bij tankstation</a></li><li><a href="#">Zwolse Bärbel Brouwer zoekt Indische stadsgenoten</a></li></ul></div>';
+	echo '<div class="widget"><h2 class="widget-title">Adverteren</h2><p>Bereik de inwoners van Zwolle met een banner op deze pagina.</p></div>';
+
+	return true;
+}
+
 function add_shortcode( ...$args ) {
 	return true;
 }

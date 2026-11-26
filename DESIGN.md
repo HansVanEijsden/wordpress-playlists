@@ -188,7 +188,7 @@ Uppercase is reserved for functional labels: the table column headers, the local
 
 The playlist component is designed for the host article column (roughly 640–760 px) and uses container queries, so it adapts to the column rather than the viewport. The sheet is a real table with three columns: a fixed time column (62 px, 52 px on narrow), a fluid artist/track column and a fixed duration column (58 px, 44 px). Rows are 44 px on desktop.
 
-Month pages are constrained to 900 px and artist/index pages to 980–1120 px. The artist page is a two-column layout above 900 px: the track list and broadcast list on the left, biography, links and facts on the right; it stacks below that. The hub fills the theme's content column and is built from sections with a title and a hairline: search, today, recent broadcasts, most played, local artists, months.
+Month pages are constrained to 900 px and artist/index pages to 980–1120 px. The artist page is a two-column layout above 900 px: the track list and broadcast list on the left in a white card, and a right rail with the artist biography/links (when present), the “On this station” facts card, and the theme's active sidebar widgets below it. The rail always exists, so the page never leaves an empty right column; it stacks below the main card on narrow screens. The hub fills the theme's content column and is built from sections with a title and a hairline: search, today, recent broadcasts, most played, local artists, months.
 
 Spacing is generous between groups (24–38 px) and tight inside them (1–4 px). Nothing is centred except empty-state text.
 
@@ -208,7 +208,7 @@ Rounded rectangles, softly: 16 px for the plate and quiet panels, 12–14 px for
 
 **Hour navigation.** A wrapped strip of pills, each showing the hour and its track count, with an accessible label ("Hour 19, 17 tracks"). It anchors to the hour rows.
 
-**Artist page.** Monogram/photo, name, a row of counts (plays, tracks, broadcasts, last played), the local badge, a copy-link button. The track list is the discography by airplay; the broadcast list is chronological with newer/older steps and a range ("Broadcasts 13–24 of 232"), each row linking to the playlist. The aside holds the biography, external links and facts.
+**Artist page.** Monogram/photo, name, a row of counts (plays, tracks, broadcasts, last played), the local badge, a copy-link button. The track list is the discography by airplay; the broadcast list is chronological with newer/older steps and a range ("Broadcasts 13–24 of 232"), each row linking to the playlist. The right rail starts with the biography and external links when they exist, otherwise directly with “On this station” (first/last played, total plays, all playlists), then renders the theme's active sidebar so banners and widgets keep their usual place.
 
 **Hub rows and day headings.** A playlist is one row: start time, programme name, track count and up to three track teasers, with an arrow. Day headings pair the weekday with a bold date, with the number of broadcasts on the right; section headings stand alone without an eyebrow.
 

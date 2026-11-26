@@ -128,11 +128,27 @@
 	box-sizing: border-box;
 }
 
+.wppl-main--artist {
+	max-width: 1240px;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	overflow: visible;
+}
+
 @media (max-width: 760px) {
 	.wppl-main {
 		margin: 0;
 		border: 0;
 		border-radius: 0;
+	}
+
+	.wppl-main--artist {
+		margin: 0;
+	}
+
+	.wppl-artist-main {
+		padding: 18px;
 	}
 }
 
@@ -1308,14 +1324,75 @@ a.wppl-top-name:hover {
 
 .wppl-artist-layout {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) 300px;
-	gap: 44px;
+	grid-template-columns: minmax(0, 1fr) 340px;
+	gap: 28px;
 	align-items: start;
 	margin-top: 8px;
 }
 
 .wppl-artist-main {
 	min-width: 0;
+	padding: 24px;
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	box-sizing: border-box;
+}
+
+.wppl-artist-main .wppl-artist-hero {
+	padding-top: 0;
+}
+
+.wppl-artist-rail {
+	display: grid;
+	gap: 18px;
+	align-content: start;
+	min-width: 0;
+}
+
+.wppl-rail-card {
+	padding: 18px 20px;
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	box-sizing: border-box;
+	min-width: 0;
+}
+
+.wppl-rail-card .wppl-subhead {
+	margin: 0 0 10px;
+}
+
+.wppl-subhead--spaced {
+	margin-top: 18px !important;
+}
+
+.wppl-rail-widgets {
+	display: grid;
+	gap: 18px;
+	min-width: 0;
+}
+
+.wppl-rail-widgets > * {
+	float: none !important;
+	width: auto !important;
+	max-width: 100%;
+	margin: 0 !important;
+	padding: 18px 20px;
+	background: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	box-sizing: border-box;
+}
+
+.wppl-rail-widgets img {
+	max-width: 100%;
+	height: auto;
+}
+
+.wppl-rail-widgets .widget-title,
+.wppl-rail-widgets .widgettitle {
+	margin-top: 0;
 }
 
 .wppl-artist-tracks {
@@ -1846,8 +1923,8 @@ a.wppl-pager-step:hover {
 		gap: 8px;
 	}
 
-	.wppl-artist-aside {
-		margin-top: 18px;
+	.wppl-artist-rail {
+		margin-top: 0;
 	}
 
 	.wppl-top-list {

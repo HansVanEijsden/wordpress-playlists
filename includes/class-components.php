@@ -216,6 +216,36 @@ final class Components {
 	}
 
 	/**
+	 * Render the first active theme sidebar, if the theme has one.
+	 *
+	 * @return string
+	 */
+	public static function theme_sidebar(): string {
+		if ( ! function_exists( 'is_active_sidebar' ) || ! function_exists( 'dynamic_sidebar' ) ) {
+			return '';
+		}
+
+		$candidates = array( 'sidebar-1', 'sidebar-2', 'td-default', 'sidebar', 'primary-sidebar', 'right-sidebar', 'sidebar-right' );
+
+		if ( function_exists( 'apply_filters' ) ) {
+			$candidates = (array) apply_filters( 'wordpress_playlists_sidebar_ids', $candidates );
+		}
+
+		foreach ( array_unique( array_filter( array_map( 'strval', $candidates ) ) ) as $sidebar_id ) {
+			if ( ! is_active_sidebar( $sidebar_id ) ) {
+				continue;
+			}
+
+			ob_start();
+			dynamic_sidebar( $sidebar_id );
+
+			return (string) ob_get_clean();
+		}
+
+		return '';
+	}
+
+	/**
 	 * Previous/next pagination with a count, never a wall of page numbers.
 	 *
 	 * @param int    $current Current page.

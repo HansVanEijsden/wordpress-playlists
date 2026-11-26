@@ -399,6 +399,9 @@ test(
 		assert_contains( 'wppl-pager', $html );
 		assert_contains( 'Uitzendingen 1–3 van 232', $html );
 		assert_contains( 'Oudere uitzendingen', $html );
+		assert_contains( 'wppl-artist-rail', $html );
+		assert_contains( 'wppl-rail-facts', $html );
+		assert_contains( 'wppl-rail-widgets', $html );
 	}
 );
 

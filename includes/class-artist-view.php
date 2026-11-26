@@ -240,6 +240,8 @@ final class Artist_View {
 
 		$html  = '<div class="wppl wppl-page wppl-artist">';
 		$html .= Components::breadcrumb( $crumbs );
+		$html .= '<div class="wppl-artist-layout">';
+		$html .= '<div class="wppl-artist-main">';
 		$html .= '<header class="wppl-artist-hero">';
 		$html .= Components::avatar(
 			array(
@@ -286,30 +288,15 @@ final class Artist_View {
 		$html .= '</div>';
 
 		$html .= '</div></header>';
-
-		$html .= '<div class="wppl-artist-layout">';
-		$html .= '<div class="wppl-artist-main">';
 		$html .= $this->render_tracks( $data );
 		$html .= $this->render_plays( $data );
 		$html .= '</div>';
 
-		$html .= '<aside class="wppl-artist-aside" aria-label="' . esc_attr__( 'About this artist', 'wordpress-playlists' ) . '">';
+		$html .= '<aside class="wppl-artist-rail" aria-label="' . esc_attr__( 'Artist information and sidebar', 'wordpress-playlists' ) . '">';
 
-		if ( '' !== (string) $data['bio'] ) {
-			$html .= '<section class="wppl-aside-section"><h2 class="wppl-subhead">' . esc_html( sprintf( /* translators: %s: artist name. */ __( 'About %s', 'wordpress-playlists' ), (string) $data['name'] ) ) . '</h2><div class="wppl-prose">' . wp_kses_post( (string) $data['bio'] ) . '</div></section>';
-		}
-
-		if ( ! empty( $data['socials'] ) ) {
-			$html .= '<section class="wppl-aside-section"><h2 class="wppl-subhead">' . esc_html__( 'Listen and follow', 'wordpress-playlists' ) . '</h2><ul class="wppl-social-list">';
-
-			foreach ( $data['socials'] as $social ) {
-				$html .= '<li><a class="wppl-textlink" href="' . esc_url( (string) $social['url'] ) . '" target="_blank" rel="noopener noreferrer">' . esc_html( (string) $social['label'] ) . Components::icon( 'arrow-right' ) . '</a></li>';
-			}
-
-			$html .= '</ul></section>';
-		}
-
-		$html .= '<section class="wppl-aside-section"><h2 class="wppl-subhead">' . esc_html__( 'On this station', 'wordpress-playlists' ) . '</h2><dl class="wppl-facts">';
+		$html .= '<section class="wppl-rail-card wppl-rail-facts">';
+		$html .= '<h2 class="wppl-subhead">' . esc_html__( 'On this station', 'wordpress-playlists' ) . '</h2>';
+		$html .= '<dl class="wppl-facts">';
 
 		if ( '' !== (string) $data['first'] ) {
 			$html .= '<dt>' . esc_html__( 'First played', 'wordpress-playlists' ) . '</dt><dd>' . esc_html( (string) $data['first'] ) . '</dd>';
@@ -324,9 +311,38 @@ final class Artist_View {
 		$html .= '<p class="wppl-aside-links"><a class="wppl-textlink" href="' . esc_url( (string) $data['hub_url'] ) . '">' . esc_html__( 'All playlists', 'wordpress-playlists' ) . Components::icon( 'arrow-right' ) . '</a></p>';
 		$html .= '</section>';
 
-		$html .= '</aside></div>';
+		if ( '' !== (string) $data['bio'] || ! empty( $data['socials'] ) ) {
+			$html .= '<section class="wppl-rail-card wppl-rail-about">';
 
-		return $html . '</div>';
+			if ( '' !== (string) $data['bio'] ) {
+				$html .= '<h2 class="wppl-subhead">' . esc_html( sprintf( /* translators: %s: artist name. */ __( 'About %s', 'wordpress-playlists' ), (string) $data['name'] ) ) . '</h2>';
+				$html .= '<div class="wppl-prose">' . wp_kses_post( (string) $data['bio'] ) . '</div>';
+			}
+
+			if ( ! empty( $data['socials'] ) ) {
+				$html .= '<h2 class="wppl-subhead' . ( '' !== (string) $data['bio'] ? ' wppl-subhead--spaced' : '' ) . '">' . esc_html__( 'Listen and follow', 'wordpress-playlists' ) . '</h2>';
+				$html .= '<ul class="wppl-social-list">';
+
+				foreach ( $data['socials'] as $social ) {
+					$html .= '<li><a class="wppl-textlink" href="' . esc_url( (string) $social['url'] ) . '" target="_blank" rel="noopener noreferrer">' . esc_html( (string) $social['label'] ) . Components::icon( 'arrow-right' ) . '</a></li>';
+				}
+
+				$html .= '</ul>';
+			}
+
+			$html .= '</section>';
+		}
+
+		$sidebar = Components::theme_sidebar();
+
+		if ( '' !== $sidebar ) {
+			$html .= '<div class="wppl-rail-widgets widget-area">' . $sidebar . '</div>';
+		}
+
+		$html .= '</aside>';
+		$html .= '</div></div>';
+
+		return $html;
 	}
 
 	/**
