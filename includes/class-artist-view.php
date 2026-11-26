@@ -238,7 +238,7 @@ final class Artist_View {
 			),
 		);
 
-		$html  = '<div class="wppl wppl-page wppl-artist">';
+		$html  = '<div class="wppl wppl-page wppl-artist-page">';
 		$html .= Components::breadcrumb( $crumbs );
 		$html .= '<div class="wppl-artist-layout">';
 		$html .= '<div class="wppl-artist-main">';

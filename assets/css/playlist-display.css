@@ -166,6 +166,10 @@
 	--wppl-page-width: 980px;
 }
 
+.wppl-artist-page {
+	--wppl-page-width: 1220px;
+}
+
 .wppl-page-head {
 	margin: 18px 0 26px;
 }
