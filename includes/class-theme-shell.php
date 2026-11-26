@@ -93,13 +93,13 @@ final class Theme_Shell {
 	 * @param string $rail Sidebar HTML.
 	 */
 	private static function generatepress( string $main, string $rail ): string {
-		$html  = '<div id="content" class="site-content"><div id="primary" class="content-area"><main id="main" class="site-main">' . $main . '</main></div>';
+		$html  = '<div id="primary" class="content-area"><main id="main" class="site-main">' . $main . '</main></div>';
 
 		if ( '' !== $rail ) {
 			$html .= '<div id="secondary" class="widget-area">' . $rail . '</div>';
 		}
 
-		return $html . '</div>';
+		return $html;
 	}
 
 	/**
