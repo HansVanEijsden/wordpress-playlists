@@ -170,6 +170,16 @@
 	min-width: 0;
 }
 
+@media (min-width: 1021px) {
+	body.wppl-artist-surface #primary {
+		width: 70%;
+	}
+
+	body.wppl-artist-surface #right-sidebar {
+		width: 30%;
+	}
+}
+
 .wppl-rail-aside {
 	min-width: 0;
 }

@@ -30,7 +30,13 @@ final class Theme_Shell {
 	 * @return array<int,string>
 	 */
 	public static function body_class( array $classes ): array {
-		if ( 'generatepress' !== get_template() || ! self::is_plugin_route() ) {
+		if ( ! self::is_plugin_route() ) {
+			return $classes;
+		}
+
+		$classes[] = 'wppl-artist-surface';
+
+		if ( 'generatepress' !== get_template() ) {
 			return $classes;
 		}
 
