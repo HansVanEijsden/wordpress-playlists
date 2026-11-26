@@ -97,6 +97,7 @@ test(
 			'class-month-view.php',
 			'class-search.php',
 			'class-artist-view.php',
+			'class-theme-shell.php',
 			'class-assets.php',
 			'class-routes.php',
 			'class-seo.php',
