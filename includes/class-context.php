@@ -535,17 +535,20 @@ final class Context {
 				continue;
 			}
 
-			$url     = get_term_link( $term );
+			$url      = get_term_link( $term );
 			$image_id = (int) get_term_meta( $term->term_id, Taxonomy::META_IMAGE, true );
 			$image    = $image_id ? (string) wp_get_attachment_image_url( $image_id, 'medium' ) : '';
+			$last     = (string) get_term_meta( $term->term_id, Artist_Index::META_LAST_PLAYED, true );
 
 			$artists[] = array(
-				'id'    => (int) $term->term_id,
-				'name'  => (string) $term->name,
-				'plays' => $plays,
-				'url'   => is_wp_error( $url ) ? '' : (string) $url,
-				'image' => $image,
-				'bio'   => (string) get_term_meta( $term->term_id, Taxonomy::META_BIO, true ),
+				'id'       => (int) $term->term_id,
+				'name'     => (string) $term->name,
+				'plays'    => $plays,
+				'url'      => is_wp_error( $url ) ? '' : (string) $url,
+				'image'    => $image,
+				'image_id' => $image_id,
+				'last'     => $last,
+				'bio'      => (string) get_term_meta( $term->term_id, Taxonomy::META_BIO, true ),
 			);
 		}
 

@@ -198,7 +198,7 @@ final class Term_Fields {
 			$urls[] = Context::artists_index_url( $letter );
 		}
 
-		Cache::purge_urls( array_values( array_unique( array_filter( $urls ) ) ) );
+		Cache::purge_urls_with_extra( array_values( array_unique( array_filter( $urls ) ) ) );
 	}
 
 	/**

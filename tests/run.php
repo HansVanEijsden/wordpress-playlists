@@ -92,6 +92,7 @@ test(
 			'class-playlist-manager.php',
 			'class-playlist-model.php',
 			'class-archive-client.php',
+			'class-archive-links.php',
 			'class-playlist-view.php',
 			'class-hub-view.php',
 			'class-month-view.php',
@@ -121,6 +122,7 @@ test(
 
 		assert_true( class_exists( 'WordPressPlaylists\\Plugin' ) );
 		assert_true( class_exists( 'WordPressPlaylists\\Artist_Index' ) );
+		assert_true( class_exists( 'WordPressPlaylists\\Archive_Links' ) );
 		assert_true( class_exists( 'WordPressPlaylists\\Theme_Shell' ) );
 	}
 );
@@ -404,6 +406,7 @@ test(
 		assert_contains( 'wppl-artist-rail', $html );
 		assert_contains( 'wppl-rail-facts', $html );
 		assert_contains( 'wppl-rail-widgets', $html );
+		assert_not_contains( 'wppl-archive-cta', $html, 'no archive CTA without Broadcast Archive' );
 	}
 );
 

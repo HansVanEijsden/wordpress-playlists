@@ -4,7 +4,7 @@ Tags: radio, playlist, radio-station, rest-api, broadcast
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,13 @@ No. Featured images are set with existing attachment IDs only (the show avatar i
 No. By default uninstalling only removes the plugin's own settings option. Playlists are only deleted if you explicitly enable "Delete all playlist posts when the plugin is uninstalled" on the settings page - and even then only playlist posts are targeted, nothing else.
 
 == Changelog ==
+
+= 1.2.0 =
+* Archiefkoppeling: de playlists verrijken de Broadcast Archive-payload met artiest-URL's en de local-flag, zodat elke artiestnaam in een archiefspeellijst naar de artiestpagina linkt.
+* Artiestpagina: een "Terugluisteren in Uitzending Gemist"-knop opent het archief met `?q=Artiest`.
+* SEO: de Open Graph-beschrijving gebruikt nu de juiste Yoast-filter (`wpseo_opengraph_desc`); artiestpagina's krijgen hun eigen afbeelding als social image.
+* Nieuwe filter `wordpress_playlists_extra_purge_urls`, zodat een radiohub die lokale artiesten toont zijn pagina kan laten purgen.
+* `Context::local_artists()` levert nu ook `image_id` en `last`.
 
 = 1.1.1 =
 * The local-artist sections now show the full list: the hub defaults to 24 artists and the artist index shows up to 24 instead of a fixed 6.

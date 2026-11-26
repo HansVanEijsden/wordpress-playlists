@@ -290,6 +290,7 @@ final class Artist_View {
 		$html .= '</p>';
 
 		$html .= '<div class="wppl-artist-actions">';
+		$html .= $this->archive_cta( $data );
 		$html .= Components::copy_link( (string) $data['url'] );
 		$html .= '</div>';
 
@@ -298,6 +299,36 @@ final class Artist_View {
 		$html .= $this->render_plays( $data );
 
 		return $html;
+	}
+
+	/**
+	 * Optional link to the archive search for this artist.
+	 *
+	 * The archive page is a client-rendered surface; a `?q=` query is enough
+	 * to start it filtered. The check is intentionally cheap: it does not fetch
+	 * the episode list on every artist page.
+	 *
+	 * @param array<string,mixed> $data Artist model.
+	 */
+	private function archive_cta( array $data ): string {
+		$archive_url = Context::archive_url();
+
+		if ( '' === $archive_url || ! class_exists( '\BroadcastArchive\Plugin' ) ) {
+			return '';
+		}
+
+		if ( class_exists( '\BroadcastArchive\Settings' ) && ! (bool) \BroadcastArchive\Settings::option( 'show_search', 1 ) ) {
+			return '';
+		}
+
+		$url = add_query_arg( 'q', (string) $data['name'], $archive_url );
+
+		return '<span class="wppl-artist-archive"><a class="wppl-archive-cta" href="' . esc_url( $url ) . '">'
+			. Components::icon( 'play' )
+			. '<span class="wppl-archive-cta__label">' . esc_html__( 'Listen back in the archive', 'wordpress-playlists' ) . '</span>'
+			. '<span class="wppl-archive-cta__label-short" aria-hidden="true">' . esc_html__( 'Listen back', 'wordpress-playlists' ) . '</span>'
+			. Components::icon( 'arrow-right' )
+			. '</a></span>';
 	}
 
 	/**

@@ -3,7 +3,7 @@
  * Plugin Name:       Radio Station Playlists
  * Plugin URI:        https://github.com/HansVanEijsden/wordpress-playlists
  * Description:       Automatic daily radio playlists for the Radio Station plugin, with a designed public presentation: an airplay hub, month archive, playlist pages and a canonical page per artist. A metadata hub posts each played track to the plugin's REST endpoint, which appends it to the correct daily playlist for the current show.
- * Version:           1.1.1
+ * Version:           1.2.0
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Requires Plugins:  radio-station
@@ -19,7 +19,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WORDPRESS_PLAYLISTS_VERSION', '1.1.0' );
+define( 'WORDPRESS_PLAYLISTS_VERSION', '1.2.0' );
 define( 'WORDPRESS_PLAYLISTS_FILE', __FILE__ );
 define( 'WORDPRESS_PLAYLISTS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WORDPRESS_PLAYLISTS_URL', plugin_dir_url( __FILE__ ) );
@@ -40,6 +40,7 @@ require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-metadata-client.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-playlist-manager.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-playlist-model.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-archive-client.php';
+require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-archive-links.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-playlist-view.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-hub-view.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-month-view.php';

@@ -31,6 +31,10 @@ final class SEO {
 		add_filter( 'wpseo_robots', array( $this, 'filter_robots' ) );
 		add_filter( 'wpseo_opengraph_title', array( $this, 'filter_og_title' ) );
 		add_filter( 'wpseo_opengraph_description', array( $this, 'filter_description' ) );
+		add_filter( 'wpseo_opengraph_desc', array( $this, 'filter_description' ) );
+		add_filter( 'wpseo_twitter_description', array( $this, 'filter_description' ) );
+		add_filter( 'wpseo_opengraph_image', array( $this, 'filter_og_image' ) );
+		add_filter( 'wpseo_twitter_image', array( $this, 'filter_og_image' ) );
 		add_filter( 'wpseo_breadcrumb_links', array( $this, 'filter_breadcrumbs' ), 99 );
 		add_filter( 'wpseo_schema_graph', array( $this, 'filter_schema' ), 10, 2 );
 		add_filter( 'wpseo_sitemap_index_links', array( $this, 'filter_sitemap_index' ) );
@@ -330,6 +334,36 @@ final class SEO {
 		$description = self::description();
 
 		return '' !== $description ? $description : $original;
+	}
+
+	/**
+	 * Use the artist image as the social image.
+	 *
+	 * Yoast uses the site logo (or nothing) on a taxonomy archive. The artist
+	 * image is the meaningful image for a shared artist page, so use it unless
+	 * an editor set a Yoast social image explicitly.
+	 *
+	 * @param string $image Current image URL.
+	 */
+	public function filter_og_image( $image ): string {
+		$context = self::context();
+
+		if ( null === $context || 'artist' !== $context['type'] ) {
+			return (string) $image;
+		}
+
+		$term = $context['term'];
+
+		foreach ( array( 'wpseo_opengraph-image-id', 'wpseo_opengraph-image' ) as $key ) {
+			if ( '' !== trim( (string) get_term_meta( $term->term_id, $key, true ) ) ) {
+				return (string) $image;
+			}
+		}
+
+		$id  = (int) get_term_meta( $term->term_id, Taxonomy::META_IMAGE, true );
+		$url = $id ? (string) wp_get_attachment_image_url( $id, 'large' ) : '';
+
+		return '' !== $url ? $url : (string) $image;
 	}
 
 	/**

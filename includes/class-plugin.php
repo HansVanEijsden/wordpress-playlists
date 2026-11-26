@@ -41,6 +41,7 @@ final class Plugin {
 
 		new Taxonomy();
 		new Artist_Index();
+		new Archive_Links();
 		Theme_Shell::register();
 
 		if ( is_admin() ) {

@@ -131,6 +131,8 @@ final class Cache {
 			$urls[] = $month_url;
 		}
 
+		$urls = array_merge( $urls, self::extra_urls() );
+
 		self::purge_urls( $urls );
 	}
 
@@ -145,7 +147,39 @@ final class Cache {
 			$urls[] = Context::month_url( (int) $month['year'], (int) $month['month'] );
 		}
 
+		$urls = array_merge( $urls, self::extra_urls() );
+
 		self::purge_urls( $urls );
+	}
+
+	/**
+	 * Extra URLs registered by companion plugins (for example a radio hub that
+	 * renders the local-artist list).
+	 *
+	 * @return array<int,string>
+	 */
+	private static function extra_urls(): array {
+		/**
+		 * Filter extra URLs to purge when playlist data changes.
+		 *
+		 * @param array<int,string> $urls Absolute URLs.
+		 */
+		$urls = (array) apply_filters( 'wordpress_playlists_extra_purge_urls', array() );
+
+		return array_values( array_filter( array_map( 'strval', $urls ) ) );
+	}
+
+	/**
+	 * Purge the given URLs plus any companion-plugin URLs.
+	 *
+	 * Editorial term saves and rebuilds call this so a page that renders
+	 * playlist data (for example a radio hub with a local-artist section) is
+	 * purged together with the playlist pages.
+	 *
+	 * @param array<int,string> $urls Absolute URLs.
+	 */
+	public static function purge_urls_with_extra( array $urls ): void {
+		self::purge_urls( array_merge( $urls, self::extra_urls() ) );
 	}
 
 	/**

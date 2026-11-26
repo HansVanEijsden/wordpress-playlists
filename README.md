@@ -185,6 +185,45 @@ screen; see [docs/ARTIST-EDITORIAL.md](docs/ARTIST-EDITORIAL.md) for the
 workflow, cache behaviour and editorial rules. Play counts and tracks stay
 derived from playlist meta and are never edited by hand.
 
+## Integrations
+
+### Broadcast Archive
+
+When the Broadcast Archive plugin is active, two directions are connected:
+
+- **Archive → artist.** The plugin hooks `broadcast_archive_payload` and adds
+  `artist_url` (and `artist_local`) to every playlist track. The archive
+  renders an artist name as a link when that key is present; without this
+  plugin the archive shows plain text. Names are matched through the same
+  normalised `_wppl_key` used by the artist index, in chunks of 300 names.
+- **Artist → archive.** An artist page shows a "Listen back in the archive"
+  button when an archive page is configured and the archive's search is on.
+  The link is `archive URL + ?q=<artist>`; the archive starts filtered.
+
+### Extra purge URLs
+
+A radio hub that renders `Context::local_artists()` needs to be purged when an
+editor changes a local flag, photo or biography. Register its URL:
+
+```php
+add_filter( 'wordpress_playlists_extra_purge_urls', function ( array $urls ): array {
+    $urls[] = home_url( '/radio-programmering/' );
+    return $urls;
+} );
+```
+
+The filter is applied by `Cache::purge_after_play()` and
+`Cache::purge_aggregates()`, so it runs for track writes, rebuilds and
+editorial term saves.
+
+### Social metadata
+
+`SEO` hooks `wpseo_opengraph_desc` (the Yoast filter that actually controls
+`og:description`) as well as the older `wpseo_opengraph_description`, so the
+concise description is used instead of the full page text. Artist pages also
+use the editorial artist image as `og:image` / `twitter:image` unless an editor
+set a Yoast social image.
+
 ## Development
 
 ```sh

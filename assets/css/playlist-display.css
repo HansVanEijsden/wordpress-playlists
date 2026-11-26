@@ -1415,7 +1415,61 @@ a.wppl-top-name:hover {
 }
 
 .wppl-artist-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
 	margin-top: 12px;
+}
+
+.wppl .wppl-archive-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 38px;
+	padding: 9px 14px;
+	border: 1px solid var(--wppl-accent);
+	border-radius: var(--wppl-pill);
+	background: var(--wppl-accent);
+	color: var(--wppl-on-accent, #fff) !important;
+	font-size: 13px;
+	font-weight: 650;
+	line-height: 1.2;
+	text-decoration: none;
+	transition: background-color 0.16s var(--wppl-ease), border-color 0.16s var(--wppl-ease);
+}
+
+.wppl .wppl-archive-cta:hover {
+	border-color: var(--wppl-accent-ink, #b3041e);
+	background: var(--wppl-accent-ink, #b3041e);
+	color: var(--wppl-on-accent, #fff) !important;
+}
+
+.wppl .wppl-archive-cta .wppl-icon {
+	width: 14px;
+	height: 14px;
+}
+
+.wppl .wppl-archive-cta .wppl-icon--arrow {
+	transition: transform 0.16s var(--wppl-ease);
+}
+
+.wppl .wppl-archive-cta:hover .wppl-icon--arrow {
+	transform: translateX(2px);
+}
+
+.wppl .wppl-archive-cta__label-short {
+	display: none;
+}
+
+@container (max-width: 540px) {
+	.wppl .wppl-archive-cta__label {
+		display: none;
+	}
+
+	.wppl .wppl-archive-cta__label-short {
+		display: inline;
+	}
 }
 
 .wppl-artist-layout {

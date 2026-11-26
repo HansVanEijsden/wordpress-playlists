@@ -308,3 +308,4 @@ require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-playlist-view.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-hub-view.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-month-view.php';
 require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-artist-view.php';
+require_once WORDPRESS_PLAYLISTS_DIR . 'includes/class-archive-links.php';

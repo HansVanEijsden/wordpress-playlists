@@ -35,6 +35,7 @@ No station name, logo or domain may appear anywhere in the repository: no header
 | `includes/class-artist-view.php` | Artist pages, A–Z index, letter pages, search results and the embeddable card. |
 | `includes/class-search.php` | Artist-name and track-title search (term meta, never `WP_Query`'s `s`). |
 | `includes/class-archive-client.php` | Matches a playlist to Broadcast Archive episodes for the shared player. |
+| `includes/class-archive-links.php` | Enriches the Broadcast Archive payload with artist-page URLs and the local flag (`broadcast_archive_payload`). |
 | `includes/class-assets.php` | Enqueues the display stylesheet/script, inline accent variables and the term-field script. |
 | `includes/class-routes.php` | Rewrite rules, query vars, templates, legacy redirects and the deferred rewrite flush. |
 | `includes/class-seo.php` | Yoast/core titles, descriptions, canonicals, robots, breadcrumbs, JSON-LD and the month sitemap. |
@@ -78,6 +79,13 @@ The `playlist` post meta written by the ingest is the **only** source of truth. 
 - All public HTML is server-rendered. JavaScript may only enhance (now marker, copy link, shared player); the page must be complete without it.
 - The `playlist_artist` taxonomy rewrite base is `artiest`, the index base `artiesten`, both setting-configurable. Month pages live under the hub page path.
 - Legacy URLs are permanently redirected: Radio Station's playlist archive and `?offset=` pagination to the hub; with `clean_playlist_urls`, the site's front path is removed from playlist permalinks and old paths 301 to the new one.
+
+### Integrations
+
+- **Broadcast Archive.** `Archive_Links` hooks `broadcast_archive_payload` and adds `artist_url` / `artist_local` to playlist tracks. Matching uses `Artist_Index::preload()` and `find_term_id()` (normalised `_wppl_key`), in chunks of 300 names. The archive plugin stays optional: without it, the filter is never called and nothing changes.
+- **Artist page → archive.** `Artist_View::archive_cta()` renders a "Listen back in the archive" link only when `Context::archive_url()` is non-empty, `BroadcastArchive\Plugin` exists and the archive search is enabled. It links `archive URL + ?q=<artist>`; do not call `Archive_Client::is_available()` here (that fetches the episode list).
+- **Extra purge URLs.** `Cache::extra_urls()` applies `wordpress_playlists_extra_purge_urls`; `Cache::purge_urls_with_extra()` is used by editorial term saves, `purge_after_play()` and `purge_aggregates()`. A radio hub that renders `Context::local_artists()` must register its URL so an editorial local-flag/photo/bio change purges it.
+- **Open Graph.** Yoast's real OG description filter is `wpseo_opengraph_desc`; `wpseo_opengraph_description` is kept for older versions. Artist pages use their term image for `og:image` / `twitter:image` unless a Yoast social image is set.
 
 ### SEO
 
