@@ -170,6 +170,14 @@
 	min-width: 0;
 }
 
+body.wppl-artist-surface #content {
+	background: #ffffff;
+}
+
+body.wppl-artist-surface .td-ss-main-sidebar .wppl-theme-rail {
+	padding-top: 26px;
+}
+
 @media (min-width: 1021px) {
 	body.wppl-artist-surface #primary {
 		width: 70%;

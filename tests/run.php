@@ -419,6 +419,21 @@ test(
 );
 
 test(
+	'letter navigation keeps letters, not numeric indexes',
+	static function (): void {
+		$view = new WordPressPlaylists\Artist_View();
+		$method = new ReflectionMethod( WordPressPlaylists\Artist_View::class, 'ordered_letters' );
+		if ( PHP_VERSION_ID < 80100 ) {
+			$method->setAccessible( true );
+		}
+		$letters = $method->invoke( $view, array( '0-9' => 1, 'a' => 2, 'b' => 3, 'z' => 4 ) );
+
+		assert_same( array( 'a', 'b', 'z', '0-9' ), $letters );
+		assert_not_contains( 'wppl-letters-nav--bottom', ( new WordPressPlaylists\Artist_View() )->render_letter( preview_letter() ) );
+	}
+);
+
+test(
 	'the artist index lists letters and local artists',
 	static function (): void {
 		$html = ( new WordPressPlaylists\Artist_View() )->render_index( preview_index() );

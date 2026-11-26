@@ -538,7 +538,7 @@ final class Artist_View {
 			return null;
 		}
 
-		$letters = $this->ordered_letters( array_keys( $groups ) );
+		$letters = $this->ordered_letters( $groups );
 		$index   = array_search( $letter, $letters, true );
 		$items   = $groups[ $letter ];
 
@@ -608,7 +608,6 @@ final class Artist_View {
 		}
 
 		$html .= '</ul>';
-		$html .= $this->letter_nav( $data, true );
 		$html .= '</div>';
 
 		return $html;
