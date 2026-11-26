@@ -3,7 +3,7 @@
  * Plugin Name:       Radio Station Playlists
  * Plugin URI:        https://github.com/HansVanEijsden/wordpress-playlists
  * Description:       Automatic daily radio playlists for the Radio Station plugin, with a designed public presentation: an airplay hub, month archive, playlist pages and a canonical page per artist. A metadata hub posts each played track to the plugin's REST endpoint, which appends it to the correct daily playlist for the current show.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Requires Plugins:  radio-station

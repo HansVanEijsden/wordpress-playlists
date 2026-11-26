@@ -31,7 +31,7 @@ final class Hub_View {
 			array(
 				'week'   => 7,
 				'top'    => 8,
-				'local'  => 4,
+				'local'  => Context::LOCAL_LIMIT,
 				'months' => 24,
 			),
 			$atts,
@@ -42,7 +42,7 @@ final class Hub_View {
 			array(
 				'week'   => max( 1, min( 31, (int) $atts['week'] ) ),
 				'top'    => max( 1, min( 20, (int) $atts['top'] ) ),
-				'local'  => max( 0, min( 12, (int) $atts['local'] ) ),
+				'local'  => max( 0, min( Context::LOCAL_LIMIT, (int) $atts['local'] ) ),
 				'months' => max( 0, min( 120, (int) $atts['months'] ) ),
 			)
 		);
@@ -59,7 +59,7 @@ final class Hub_View {
 	public function data( array $args = array() ): array {
 		$week   = (int) ( $args['week'] ?? 7 );
 		$top    = (int) ( $args['top'] ?? 8 );
-		$local  = (int) ( $args['local'] ?? 4 );
+		$local  = (int) ( $args['local'] ?? Context::LOCAL_LIMIT );
 		$months = (int) ( $args['months'] ?? 24 );
 
 		$today = current_time( 'Y-m-d' );

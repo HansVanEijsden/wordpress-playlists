@@ -454,7 +454,7 @@ final class Artist_View {
 			$counts[ $letter ] = count( $artists );
 		}
 
-		$local = ! empty( Context::setting( 'local_artists_section', true ) ) ? Context::local_artists( 6 ) : array();
+		$local = ! empty( Context::setting( 'local_artists_section', true ) ) ? Context::local_artists( Context::LOCAL_LIMIT ) : array();
 
 		return array(
 			'groups'     => $groups,

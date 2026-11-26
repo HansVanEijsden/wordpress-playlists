@@ -15,6 +15,9 @@ defined( 'ABSPATH' ) || exit;
 
 final class Context {
 
+	/** Upper bound for the local-artist lists on the hub and the artist index. */
+	public const LOCAL_LIMIT = 24;
+
 	/** Static settings cache for the current request. */
 	private static ?array $settings = null;
 
@@ -498,8 +501,8 @@ final class Context {
 	 * @param int $limit Maximum number of artists.
 	 * @return array<int,array{id:int,name:string,plays:int,url:string,image:string,bio:string}>
 	 */
-	public static function local_artists( int $limit = 6 ): array {
-		$limit = max( 1, min( 24, $limit ) );
+	public static function local_artists( int $limit = self::LOCAL_LIMIT ): array {
+		$limit = max( 1, min( self::LOCAL_LIMIT, $limit ) );
 		$terms = get_terms(
 			array(
 				'taxonomy'   => Taxonomy::NAME,

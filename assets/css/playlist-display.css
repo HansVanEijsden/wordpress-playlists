@@ -178,6 +178,18 @@ body.wppl-artist-surface .td-ss-main-sidebar .wppl-theme-rail {
 	padding-top: 26px;
 }
 
+/*
+ * GeneratePress wraps every sidebar widget in `.inner-padding` (20px) inside a
+ * white card. Give the editorial rail the same inner measure, so "Op deze
+ * zender", the biography and the links line up with the widget content below;
+ * the 1px separators keep spanning the full rail because the padding sits
+ * inside the card.
+ */
+body.wp-theme-generatepress.wppl-artist-surface .wppl-theme-rail .wppl-rail-card {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
 @media (min-width: 1021px) {
 	body.wppl-artist-surface #primary {
 		width: 70%;

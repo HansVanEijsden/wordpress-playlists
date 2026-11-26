@@ -4,7 +4,7 @@ Tags: radio, playlist, radio-station, rest-api, broadcast
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,10 @@ No. Featured images are set with existing attachment IDs only (the show avatar i
 No. By default uninstalling only removes the plugin's own settings option. Playlists are only deleted if you explicitly enable "Delete all playlist posts when the plugin is uninstalled" on the settings page - and even then only playlist posts are targeted, nothing else.
 
 == Changelog ==
+
+= 1.1.1 =
+* The local-artist sections now show the full list: the hub defaults to 24 artists and the artist index shows up to 24 instead of a fixed 6.
+* Aligned the editorial artist rail with GeneratePress's widget padding, so "On this station", the biography and the links line up with the widgets below.
 
 = 1.1.0 =
 * Added the public airplay archive: hub shortcode, month pages, redesigned playlist pages and a canonical page per artist.
