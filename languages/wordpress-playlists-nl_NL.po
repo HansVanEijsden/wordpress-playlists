@@ -300,7 +300,6 @@ msgstr "Luisteren en volgen"
 msgid "Listen back"
 msgstr "Terugluisteren"
 
-#, fuzzy
 msgid "Listen back in the archive"
 msgstr "Terugluisteren in Uitzending Gemist"
 
