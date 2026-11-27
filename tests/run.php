@@ -481,6 +481,65 @@ test(
 	}
 );
 
+test(
+	'every breadcrumb keeps the keys Yoast needs for its schema',
+	static function (): void {
+		$seo = ( new ReflectionClass( 'WordPressPlaylists\\SEO' ) )->newInstanceWithoutConstructor();
+
+		$context_property  = new ReflectionProperty( 'WordPressPlaylists\\SEO', 'context' );
+		$resolved_property = new ReflectionProperty( 'WordPressPlaylists\\SEO', 'resolved' );
+		if ( PHP_VERSION_ID < 80100 ) {
+			$context_property->setAccessible( true );
+			$resolved_property->setAccessible( true );
+		}
+		$resolved_property->setValue( null, true );
+
+		$contexts = array(
+			'playlist' => array(
+				'type' => 'playlist',
+				'post' => (object) array( 'post_title' => '3 augustus 2026 - Ochtendshow' ),
+			),
+			'artist'   => array(
+				'type' => 'artist',
+				'term' => (object) array( 'name' => 'Queen' ),
+			),
+			'month'    => array(
+				'type'  => 'month',
+				'year'  => 2026,
+				'month' => 11,
+			),
+			'letter'   => array(
+				'type'   => 'letter',
+				'letter' => 'q',
+			),
+			'search'   => array(
+				'type'  => 'search',
+				'query' => 'queen',
+			),
+			'index'    => array( 'type' => 'index' ),
+		);
+
+		foreach ( $contexts as $label => $context ) {
+			$context_property->setValue( null, $context );
+			$crumbs = $seo->filter_breadcrumbs( array() );
+
+			assert_true( count( $crumbs ) >= 2, $label . ' should build a trail' );
+
+			foreach ( $crumbs as $index => $crumb ) {
+				assert_true( array_key_exists( 'text', $crumb ), $label . ' crumb ' . $index . ' has no text' );
+				assert_true( array_key_exists( 'url', $crumb ), $label . ' crumb ' . $index . ' has no url key' );
+			}
+
+			if ( 'index' !== $label ) {
+				$last = end( $crumbs );
+
+				assert_same( '', $last['url'], $label . ' must not link the current page' );
+				assert_true( '' !== $last['text'], $label . ' last crumb needs a label' );
+			}
+		}
+	}
+);
+
 echo "\n" . $GLOBALS['tests_run'] . ' tests, ' . $GLOBALS['tests_failed'] . " failed.\n";
 
 exit( $GLOBALS['tests_failed'] > 0 ? 1 : 0 );

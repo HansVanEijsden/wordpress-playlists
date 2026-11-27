@@ -4,7 +4,7 @@ Tags: radio, playlist, radio-station, rest-api, broadcast
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,9 @@ No. Featured images are set with existing attachment IDs only (the show avatar i
 No. By default uninstalling only removes the plugin's own settings option. Playlists are only deleted if you explicitly enable "Delete all playlist posts when the plugin is uninstalled" on the settings page - and even then only playlist posts are targeted, nothing else.
 
 == Changelog ==
+
+= 1.2.1 =
+* SEO: de breadcrumb-trail op playlist-, artiest-, maand-, letter- en zoekpagina's gaf de laatste kruimel geen `url`-sleutel. Yoast beschouwt zo'n kruimel als kapot en laat dan de hele BreadcrumbList weg, terwijl de pagina's `#breadcrumb`-verwijzing blijft staan. Search Console meldde dat als "Ontbrekend veld 'itemListElement'". De laatste kruimel heeft nu een lege `url`, zoals Yoast verwacht.
 
 = 1.2.0 =
 * Archiefkoppeling: de playlists verrijken de Broadcast Archive-payload met artiest-URL's en de local-flag, zodat elke artiestnaam in een archiefspeellijst naar de artiestpagina linkt.

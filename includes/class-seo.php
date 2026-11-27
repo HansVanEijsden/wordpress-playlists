@@ -500,27 +500,40 @@ final class SEO {
 			);
 		}
 
+		/*
+		 * The current page is the last crumb and has no target. It still needs a
+		 * `url` key: Yoast's schema Breadcrumb piece treats a crumb without one
+		 * as broken and then drops the complete BreadcrumbList, while the page
+		 * keeps its dangling `#breadcrumb` reference. Search Console reports
+		 * that as "Missing field 'itemListElement'". Yoast removes the empty URL
+		 * from the final ListItem itself, as Google's spec requires.
+		 */
+		$terminal = static function ( string $text ): array {
+			return array(
+				'text' => $text,
+				'url'  => '',
+			);
+		};
+
 		switch ( $context['type'] ) {
 			case 'playlist':
-				$crumbs[] = array( 'text' => (string) $context['post']->post_title );
+				$crumbs[] = $terminal( (string) $context['post']->post_title );
 				break;
 
 			case 'artist':
-				$crumbs[] = array( 'text' => (string) $context['term']->name );
+				$crumbs[] = $terminal( (string) $context['term']->name );
 				break;
 
 			case 'month':
-				$crumbs[] = array(
-					'text' => date_i18n( 'F Y', mktime( 12, 0, 0, (int) $context['month'], 1, (int) $context['year'] ) ),
-				);
+				$crumbs[] = $terminal( date_i18n( 'F Y', mktime( 12, 0, 0, (int) $context['month'], 1, (int) $context['year'] ) ) );
 				break;
 
 			case 'letter':
-				$crumbs[] = array( 'text' => '0-9' === $context['letter'] ? '0–9' : strtoupper( (string) $context['letter'] ) );
+				$crumbs[] = $terminal( '0-9' === $context['letter'] ? '0–9' : strtoupper( (string) $context['letter'] ) );
 				break;
 
 			case 'search':
-				$crumbs[] = array( 'text' => __( 'Search', 'wordpress-playlists' ) );
+				$crumbs[] = $terminal( __( 'Search', 'wordpress-playlists' ) );
 				break;
 		}
 
